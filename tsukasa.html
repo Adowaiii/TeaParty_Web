@@ -130,13 +130,25 @@
       font-weight: 400;
       margin-top: 0.3rem;
     }
+    
     .hero-sub {
-      margin-top: 1rem;
-      color: rgba(255,255,255,0.80);
-      font-size: 1rem;
+      margin-top: 1.2rem;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
+    
+    .hero-sub::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1px;
+      background: rgba(255,255,255,0.5);
+    }
+
     .hero-stars {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -759,9 +771,98 @@
       .hero-title { font-size: 1.9rem; }
       .cross-nav-card { width: 200px; }
     }
+
+    /* ── PRELOADER ──────────────────────────────────── */
+    body.loading { overflow: hidden; }
+    #preloader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: linear-gradient(160deg, #061828 0%, #0d2d4a 60%, #1A4F7A 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1.6rem;
+      transition: opacity 0.7s ease;
+    }
+    #preloader.fade-out { opacity: 0; pointer-events: none; }
+    .pl-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .pl-s {
+      position: absolute; height: 2px;
+      background: linear-gradient(to left, transparent, #FFD166 60%, #fff);
+      border-radius: 2px; opacity: 0;
+      animation: pl-shoot ease-in-out infinite;
+    }
+    .pl-s::before {
+      content: ''; position: absolute; left: -4px; top: 50%;
+      transform: translateY(-50%); width: 6px; height: 6px;
+      border-radius: 50%; background: #fff;
+      box-shadow: 0 0 8px 3px #FFD166;
+    }
+    .pl-s:nth-child(1) { width: 130px; top: 18%; left: 85%; animation-duration: 3.8s; animation-delay: 0.3s; }
+    .pl-s:nth-child(2) { width: 100px; top: 50%; left: 75%; animation-duration: 4.5s; animation-delay: 1.6s; }
+    .pl-s:nth-child(3) { width: 160px; top: 72%; left: 92%; animation-duration: 3.2s; animation-delay: 2.5s; }
+    @keyframes pl-shoot {
+      0%   { opacity: 0; transform: translateX(0); }
+      8%   { opacity: 1; }
+      75%  { opacity: 0.8; }
+      100% { opacity: 0; transform: translateX(-500px); }
+    }
+    .pl-emblem {
+      width: 96px; height: 96px; position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pl-ring {
+      position: absolute; inset: 0;
+      border: 3px solid rgba(255,209,102,0.18);
+      border-top-color: #FFD166;
+      border-right-color: rgba(255,209,102,0.5);
+      border-radius: 50%;
+      animation: pl-spin 1.5s linear infinite;
+    }
+    .pl-icon {
+      color: #FFD166; font-size: 2.2rem; line-height: 1;
+      animation: pl-pulse 2s ease-in-out infinite;
+      text-shadow: 0 0 16px rgba(255,209,102,0.9);
+    }
+    @keyframes pl-spin  { to { transform: rotate(360deg); } }
+    @keyframes pl-pulse { 0%,100% { opacity: 0.65; transform: scale(0.88); } 50% { opacity: 1; transform: scale(1.12); } }
+    .pl-title {
+      color: #fff; font-family: 'Playfair Display', serif;
+      font-size: 1.65rem; text-align: center; letter-spacing: 0.08em;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.5);
+    }
+    .pl-title em {
+      color: #FFD166; font-style: normal; font-size: 0.9rem;
+      display: block; letter-spacing: 0.28em; margin-top: 0.4rem;
+      font-family: 'Taipei Sans TC', sans-serif; font-weight: 400;
+    }
+    .pl-dots { display: flex; gap: 0.55rem; }
+    .pl-dots span {
+      width: 7px; height: 7px; border-radius: 50%;
+      animation: pl-bounce 1.2s ease-in-out infinite;
+    }
+    .pl-dots span:nth-child(1) { background: #FFD166; }
+    .pl-dots span:nth-child(2) { background: #FF8C42; animation-delay: 0.2s; }
+    .pl-dots span:nth-child(3) { background: #FFD166; animation-delay: 0.4s; }
+    @keyframes pl-bounce {
+      0%,100% { transform: translateY(0); opacity: 0.3; }
+      50%      { transform: translateY(-10px); opacity: 1; }
+    }
   </style>
 </head>
 <body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pl-bg">
+    <span class="pl-s"></span>
+    <span class="pl-s"></span>
+    <span class="pl-s"></span>
+  </div>
+  <div class="pl-emblem">
+    <div class="pl-ring"></div>
+    <span class="pl-icon">✦</span>
+  </div>
+  <div class="pl-title">天馬司<em>生日茶會</em></div>
+  <div class="pl-dots"><span></span><span></span><span></span></div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -1000,6 +1101,23 @@
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     });
   });
+
+  // Preloader
+  (function() {
+    document.body.classList.add('loading');
+    function hidePreloader() {
+      var pl = document.getElementById('preloader');
+      if (!pl) return;
+      pl.classList.add('fade-out');
+      document.body.classList.remove('loading');
+      setTimeout(function() { pl.remove(); }, 700);
+    }
+    if (document.readyState === 'complete') {
+      setTimeout(hidePreloader, 300);
+    } else {
+      window.addEventListener('load', hidePreloader);
+    }
+  })();
 </script>
 </body>
 </html>

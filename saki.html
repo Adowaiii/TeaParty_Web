@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天馬咲希生日茶會 𝄞</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Taipei+Sans+TC:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dk-blue:   #1E2875;
+      --dk-blue2:  #2D3A8C;
+      --md-blue:   #3949AB;
+      --yellow:    #FFD600;
+      --yellow-lt: #FFF9C4;
+      --yellow-md: #FFE566;
+      --pink:      #E91E63;
+      --pink-lt:   #FCE4EC;
+      --pink-md:   #F48FB1;
+      --bg:        #FFF8FB;
+      --card:      #FFFFFF;
+      --text:      #1A1A3E;
+      --text-lt:   #5C5C8A;
+      --border:    #F9C8DC;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', 'Taipei Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ───────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 2rem;
+      background: rgba(255,255,255,0.50);
+      backdrop-filter: blur(16px);
+      border-bottom: 1.5px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 1px 0 rgba(244,143,177,0.5), 0 4px 20px rgba(233,30,99,0.06);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dk-blue);
+      letter-spacing: 0.03em;
+    }
+    .nav-brand span { color: var(--pink); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-lt);
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      transition: all 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--pink-lt);
+      color: var(--pink);
+    }
+
+    /* ── HERO ──────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(233,30,99,0.18) 0%, transparent 55%),
+        linear-gradient(
+          to bottom,
+          rgba(30,40,117,0.04) 0%,
+          rgba(30,40,117,0.06) 45%,
+          rgba(15,18,60,0.72) 78%,
+          rgba(15,18,60,0.92) 100%
+        );
+    }
+    /* subtle shimmering aurora at top */
+    .hero-aurora {
+      position: absolute;
+      top: -30%; left: -10%;
+      width: 120%; height: 60%;
+      background: radial-gradient(ellipse, rgba(233,30,99,0.12) 0%, rgba(255,214,0,0.06) 40%, transparent 70%);
+      animation: auroraShift 8s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 1;
+    }
+    @keyframes auroraShift {
+      0%   { transform: translateX(-5%) scaleY(1); opacity: 0.7; }
+      100% { transform: translateX(5%) scaleY(1.15); opacity: 1; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      padding: 3rem 3rem 4.5rem;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(233,30,99,0.85);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      padding: 0.35rem 1.1rem;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .hero-eyebrow {
+      display: block;
+      width: 40px; height: 2px;
+      background: linear-gradient(90deg, var(--pink), var(--yellow));
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6.5vw, 4.5rem);
+      color: #fff;
+      line-height: 1.15;
+      text-shadow: 0 2px 30px rgba(15,18,60,0.4);
+      letter-spacing: -0.01em;
+    }
+    .hero-title .zh {
+      font-family: 'Taipei Sans TC', sans-serif;
+      display: block;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      color: var(--yellow);
+      font-weight: 400;
+      margin-top: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+    .hero-sub {
+      margin-top: 1.2rem;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .hero-sub::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1px;
+      background: rgba(255,255,255,0.5);
+    }
+
+    /* ── CSS-DRAWN FALLING PETALS ───────────────────────── */
+    .petals {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -5%;
+      width: 9px;
+      height: 16px;
+      border-radius: 50% 5% 50% 5%;
+      opacity: 0;
+      animation: petalFall linear infinite;
+    }
+    @keyframes petalFall {
+      0%   {
+        opacity: 0;
+        transform: translateY(0) rotate(var(--rot)) translateX(0px);
+      }
+      8%   { opacity: 0.82; }
+      50%  { transform: translateY(52vh) rotate(calc(var(--rot) + 120deg)) translateX(var(--drift)); }
+      88%  { opacity: 0.55; }
+      100% {
+        opacity: 0;
+        transform: translateY(108vh) rotate(calc(var(--rot) + 260deg)) translateX(calc(var(--drift) * 1.4));
+      }
+    }
+    /* individual petal positions, colors, timing */
+    .petal:nth-child(1)  { left:5%;  background:rgba(244,143,177,0.75); --rot:15deg;  --drift:30px;  animation-duration:9s;  animation-delay:0s; }
+    .petal:nth-child(2)  { left:14%; background:rgba(255,214,0,0.65);   --rot:-20deg; --drift:-20px; animation-duration:12s; animation-delay:3s; }
+    .petal:nth-child(3)  { left:26%; background:rgba(244,143,177,0.65); --rot:40deg;  --drift:45px;  animation-duration:10s; animation-delay:1s; width:7px; height:13px; }
+    .petal:nth-child(4)  { left:38%; background:rgba(252,228,236,0.90); --rot:-10deg; --drift:-35px; animation-duration:14s; animation-delay:5s; }
+    .petal:nth-child(5)  { left:50%; background:rgba(244,143,177,0.70); --rot:25deg;  --drift:25px;  animation-duration:11s; animation-delay:2s; width:11px; height:19px; }
+    .petal:nth-child(6)  { left:61%; background:rgba(255,214,0,0.55);   --rot:-35deg; --drift:-50px; animation-duration:13s; animation-delay:7s; width:7px; height:12px; }
+    .petal:nth-child(7)  { left:70%; background:rgba(244,143,177,0.80); --rot:55deg;  --drift:20px;  animation-duration:8s;  animation-delay:4s; }
+    .petal:nth-child(8)  { left:80%; background:rgba(252,228,236,0.85); --rot:-5deg;  --drift:-25px; animation-duration:15s; animation-delay:1.5s; width:10px; height:18px; }
+    .petal:nth-child(9)  { left:88%; background:rgba(244,143,177,0.60); --rot:30deg;  --drift:40px;  animation-duration:10s; animation-delay:6s; width:7px; height:13px; }
+    .petal:nth-child(10) { left:95%; background:rgba(255,214,0,0.60);   --rot:-45deg; --drift:-15px; animation-duration:11s; animation-delay:9s; }
+    .petal:nth-child(11) { left:20%; background:rgba(252,228,236,0.75); --rot:10deg;  --drift:55px;  animation-duration:16s; animation-delay:11s; width:8px; height:14px; }
+    .petal:nth-child(12) { left:55%; background:rgba(244,143,177,0.65); --rot:-25deg; --drift:-40px; animation-duration:12s; animation-delay:13s; }
+
+    /* ── FLOATING HERO DECO (text symbols) ──────────────── */
+    .hero-deco {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .deco {
+      position: absolute;
+      animation: floatDeco ease-in-out infinite;
+      font-style: normal;
+      opacity: 0.6;
+    }
+    .deco:nth-child(1) { top:10%; left:6%;  font-size:1.5rem; animation-duration:5s; animation-delay:0s;   color:var(--pink-md); }
+    .deco:nth-child(2) { top:22%; left:21%; font-size:0.85rem;animation-duration:6s; animation-delay:1.2s; color:var(--yellow-md); }
+    .deco:nth-child(3) { top:7%;  left:51%; font-size:1.3rem; animation-duration:4s; animation-delay:0.5s; color:var(--pink-md); }
+    .deco:nth-child(4) { top:28%; left:79%; font-size:0.95rem;animation-duration:7s; animation-delay:2s;   color:var(--yellow); }
+    .deco:nth-child(5) { top:14%; left:87%; font-size:1.4rem; animation-duration:5s; animation-delay:0.8s; color:rgba(252,228,236,0.9); }
+    .deco:nth-child(6) { top:40%; left:93%; font-size:0.85rem;animation-duration:6s; animation-delay:1.5s; color:var(--yellow-md); }
+    @keyframes floatDeco {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%       { transform: translateY(-10px) rotate(10deg); }
+    }
+
+    /* ── SCROLL REVEAL ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── SECTION WRAPPER ────────────────────────────────── */
+    .section { padding: 5.5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.73rem; font-weight: 800;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 0.7rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      color: var(--dk-blue);
+      letter-spacing: -0.01em;
+    }
+    .section-title .zh {
+      display: block;
+      font-family: 'Taipei Sans TC', sans-serif;
+      font-size: 0.52em; color: var(--text-lt);
+      font-weight: 400; margin-top: 0.35rem;
+      letter-spacing: 0.05em;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 1.2rem auto 0;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      width: 40px; height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--pink-md));
+      border-radius: 2px;
+    }
+    .divider::after {
+      background: linear-gradient(90deg, var(--pink-md), transparent);
+    }
+    .divider-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+    }
+
+    /* ── EVENT SECTION BACKGROUND ───────────────────────── */
+    #event {
+      background:
+        radial-gradient(ellipse at 10% 40%, rgba(233,30,99,0.055) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 70%, rgba(255,214,0,0.06) 0%, transparent 45%),
+        var(--bg);
+    }
+
+    /* ── INFO CARDS (glassmorphism) ─────────────────────── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+    .info-card {
+      background: rgba(255,255,255,0.70);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(244,143,177,0.35);
+      border-radius: 24px;
+      padding: 2rem 1.3rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .info-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--pink), var(--yellow-md), var(--pink));
+      background-size: 200%;
+      animation: shimmerBar 3s linear infinite;
+    }
+    @keyframes shimmerBar {
+      0%   { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+    .info-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(233,30,99,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .info-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(233,30,99,0.14);
+      border-color: rgba(233,30,99,0.30);
+    }
+    .info-icon {
+      font-size: 2rem;
+      margin-bottom: 0.9rem;
+      display: block;
+      filter: drop-shadow(0 2px 6px rgba(233,30,99,0.2));
+    }
+    .info-label {
+      font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--pink-md); margin-bottom: 0.45rem;
+    }
+    .info-value { font-size: 1.1rem; font-weight: 700; color: var(--dk-blue); line-height: 1.4; }
+    .info-note { font-size: 0.80rem; color: var(--text-lt); margin-top: 0.35rem; }
+
+    /* ── INVITATION DESC ────────────────────────────────── */
+    .event-invitation {
+      margin-top: 2.8rem;
+      background: rgba(255,255,255,0.80);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid var(--border);
+      border-radius: 28px;
+      padding: 3rem 3.5rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(233,30,99,0.07);
+      overflow: hidden;
+    }
+    /* corner ornaments */
+    .event-invitation::before,
+    .event-invitation::after {
+      content: '❀';
+      position: absolute;
+      font-size: 3.5rem;
+      color: rgba(244,143,177,0.15);
+      line-height: 1;
+    }
+    .event-invitation::before { top: -0.2rem; left: 1rem; }
+    .event-invitation::after  { bottom: -0.5rem; right: 1rem; transform: rotate(180deg); }
+    .invite-ornament {
+      color: var(--pink);
+      font-size: 0.95rem;
+      letter-spacing: 0.3em;
+      margin-bottom: 1.2rem;
+      display: block;
+      opacity: 0.7;
+    }
+    .invite-body {
+      font-size: 1.02rem;
+      line-height: 2;
+      color: var(--text);
+    }
+    .invite-body strong { color: var(--pink); font-weight: 800; }
+    .invite-ornament-bottom {
+      color: var(--pink);
+      font-size: 0.95rem;
+      letter-spacing: 0.3em;
+      margin-top: 1.2rem;
+      display: block;
+      opacity: 0.7;
+    }
+
+    /* ── SPECIAL THANKS ─────────────────────────────────── */
+    #credits {
+      background:
+        radial-gradient(ellipse at 80% 30%, rgba(255,214,0,0.06) 0%, transparent 50%),
+        var(--bg);
+    }
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+    .credit-card {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(244,143,177,0.35);
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .credit-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--pink), var(--yellow-md), var(--pink));
+      background-size: 200%;
+      animation: shimmerBar 3s linear infinite;
+    }
+    .credit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(233,30,99,0.12);
+    }
+    .credit-role {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--pink);
+      background: var(--pink-lt);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .credit-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-lt), var(--yellow-lt));
+      border: 3px solid rgba(244,143,177,0.4);
+      margin: 0 auto 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+    }
+    .credit-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--dk-blue); margin-bottom: 0.3rem;
+    }
+    .credit-handle {
+      font-size: 0.8rem; color: var(--text-lt); font-weight: 600;
+    }
+    .credit-wrap { position: relative; }
+    .credit-wrap:hover { z-index: 20; }
+    .credit-preview {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px) scale(0.94);
+      width: 240px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      border: 2px solid rgba(244,143,177,0.5);
+      box-shadow: 0 16px 48px rgba(233,30,99,0.18);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.34,1.2,0.64,1);
+      z-index: 10;
+    }
+    .credit-preview img {
+      width: 100%; height: 170px;
+      object-fit: cover; display: block;
+    }
+    .credit-preview-ph {
+      width: 100%; height: 170px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, var(--pink-lt), var(--yellow-lt));
+    }
+    .credit-preview-label {
+      padding: 0.55rem 1rem;
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--dk-blue); text-align: center;
+      border-top: 1px solid rgba(244,143,177,0.25);
+    }
+    .credit-wrap:hover .credit-preview {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    /* ── GALLERY TEASER ─────────────────────────────────── */
+    #gallery-teaser {
+      background: linear-gradient(180deg, var(--bg) 0%, rgba(252,228,236,0.6) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #gallery-teaser::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--pink-md), transparent);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .gallery-card {
+      aspect-ratio: 4/3;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.35s;
+      border: 1.5px solid rgba(244,143,177,0.25);
+    }
+    .gallery-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(233,30,99,0.18);
+    }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(252,228,236,0.8), rgba(255,249,196,0.8));
+      color: var(--text-lt);
+      font-size: 2.5rem; gap: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* shimmer sweep */
+    .gallery-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+      background-size: 200%;
+      animation: placeholderShimmer 2.5s linear infinite;
+    }
+    @keyframes placeholderShimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .gallery-placeholder span {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--pink-md);
+      position: relative; z-index: 1;
+    }
+    .gallery-placeholder > :first-child { position: relative; z-index: 1; }
+
+    .gallery-cta { text-align: center; margin-top: 2.5rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 800; font-size: 0.95rem;
+      text-decoration: none; letter-spacing: 0.06em;
+      transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink) 0%, #C2185B 50%, var(--pink) 100%);
+      background-size: 200%;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(233,30,99,0.35);
+      transition: background-position 0.4s, transform 0.25s, box-shadow 0.25s;
+    }
+    .btn-primary:hover {
+      background-position: right center;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(233,30,99,0.45);
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    .footer-wave {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+    .footer-wave svg {
+      display: block;
+      width: 100%; height: 48px;
+    }
+    footer {
+      background: var(--dk-blue);
+      color: rgba(255,255,255,0.65);
+      text-align: center;
+      padding: 2rem 2rem 2.5rem;
+      font-size: 0.85rem;
+      line-height: 1.9;
+    }
+    footer strong { color: var(--yellow); }
+    .footer-deco {
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.4em;
+      opacity: 0.8;
+    }
+
+    /* ── CROSS-NAV POPUP ────────────────────────────────── */
+    .cross-nav {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 200;
+    }
+    .cross-nav-bubble {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF8C42, #2C7BB6);
+      box-shadow: 0 4px 20px rgba(255,140,66,0.40);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; border: 3px solid #fff;
+      font-size: 1.5rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative; z-index: 2;
+    }
+    .cross-nav-bubble:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 30px rgba(255,140,66,0.50);
+    }
+    .cross-nav-bubble .bubble-hint {
+      position: absolute; right: 66px;
+      background: var(--dk-blue); color: #fff;
+      font-size: 0.75rem; font-weight: 700;
+      white-space: nowrap; padding: 0.35rem 0.8rem;
+      border-radius: 20px; opacity: 0;
+      pointer-events: none; transition: opacity 0.2s;
+    }
+    .cross-nav-bubble:hover .bubble-hint { opacity: 1; }
+    .cross-nav-card {
+      position: absolute; bottom: 68px; right: 0;
+      width: 230px; background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 20px; padding: 1.2rem 1.5rem;
+      box-shadow: 0 8px 40px rgba(44,123,182,0.20);
+      border: 1.5px solid #FFD166;
+      opacity: 0; transform: translateY(10px) scale(0.95);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cross-nav-card.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+    .cross-nav-card .card-title {
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #FF8C42; margin-bottom: 0.4rem;
+    }
+    .cross-nav-card .card-name {
+      font-family: 'Taipei Sans TC', sans-serif; font-size: 1.05rem; font-weight: 700;
+      color: #1A4F7A; margin-bottom: 1rem; line-height: 1.4;
+    }
+    .cross-nav-card .card-name em {
+      display: block; font-style: normal; font-size: 0.75rem;
+      color: #FF8C42; font-weight: 600; margin-top: 0.1rem;
+    }
+    .cross-nav-card a.card-link {
+      display: block; text-align: center; padding: 0.6rem 1rem;
+      background: linear-gradient(135deg, #FF8C42, #2C7BB6);
+      color: #fff; border-radius: 12px; text-decoration: none;
+      font-weight: 800; font-size: 0.85rem; transition: opacity 0.2s;
+    }
+    .cross-nav-card a.card-link:hover { opacity: 0.85; }
+    .cross-nav-close {
+      position: absolute; top: 0.5rem; right: 0.7rem;
+      cursor: pointer; font-size: 1rem; color: #bbb; line-height: 1; font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      .hero-content { padding: 2rem 1.5rem 3rem; }
+      .section { padding: 3.5rem 1.2rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .info-grid { grid-template-columns: repeat(2, 1fr); }
+      .event-invitation { padding: 2rem 1.5rem; }
+      nav { padding: 0.7rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">𝄞 <span>天馬咲希</span> 生日茶會</div>
+  <ul class="nav-links">
+    <li><a href="#event" class="active">活動資訊</a></li>
+    <li><a href="saki-gallery.html">相冊</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="assets/saki-main.png" alt="天馬咲希生日茶會主視覺" class="hero-img">
+  <div class="hero-overlay"></div>
+  <div class="hero-aurora"></div>
+
+  <!-- CSS-drawn falling petals -->
+  <div class="petals" aria-hidden="true">
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+  </div>
+
+  <!-- floating text deco -->
+  <div class="hero-deco" aria-hidden="true">
+    <span class="deco">𝄞</span>
+    <span class="deco">🎀</span>
+    <span class="deco">♡</span>
+    <span class="deco">★</span>
+    <span class="deco">❀</span>
+    <span class="deco">𝄞</span>
+  </div>
+
+  <div class="hero-content">
+    <span class="hero-eyebrow"></span>
+    <span class="hero-tag">𝄞 Birthday Tea Party 𝄞</span>
+    <h1 class="hero-title">
+      Tenma Saki
+      <span class="zh">天馬咲希 生日茶會</span>
+    </h1>
+    <p class="hero-sub">2026.05.09 &nbsp;·&nbsp; 音符與花香的下午</p>
+  </div>
+</section>
+
+<!-- EVENT INFO -->
+<div id="event">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="section-label">𝄞 Event Details</span>
+      <h2 class="section-title">
+        活動資訊
+        <span class="zh">Event Information</span>
+      </h2>
+      <div class="divider"><div class="divider-dot"></div></div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card reveal reveal-delay-1">
+        <span class="info-icon">📅</span>
+        <div class="info-label">Date</div>
+        <div class="info-value">2026.05.09</div>
+        <div class="info-note">Saturday</div>
+      </div>
+      <div class="info-card reveal reveal-delay-2">
+        <span class="info-icon">🕐</span>
+        <div class="info-label">Time</div>
+        <div class="info-value">14:00 – 17:00</div>
+        <div class="info-note">請提前 10 分鐘入場</div>
+      </div>
+      <div class="info-card reveal reveal-delay-3">
+        <span class="info-icon">📍</span>
+        <div class="info-label">Venue</div>
+        <div class="info-value">華緣藝文空間 B1</div>
+        <div class="info-note">詳細地址請見報名表</div>
+      </div>
+      <div class="info-card reveal reveal-delay-4">
+        <span class="info-icon">🎫</span>
+        <div class="info-label">Admission</div>
+        <div class="info-value">需事先報名</div>
+        <div class="info-note">名額有限，先報先得</div>
+      </div>
+    </div>
+
+    <div class="event-invitation reveal">
+      <span class="invite-ornament">— ❀ —</span>
+      <p class="invite-body">
+        歡迎來到 <strong>天馬咲希的生日茶會</strong>！<br>
+        伴隨著鋼琴的悠揚旋律與茶香，在這個充滿溫柔光芒的午後，<br>
+        我們一起為最可愛的咲希送上滿滿的祝福。<br><br>
+        現場將設有 <strong>主視覺拍照區</strong>、<strong>音樂角落</strong>、<strong>特製蛋糕與茶點</strong>，<br>
+        以及數不完的幸福時光。<br><br>
+        願咲希的笑容，如同春日的花朵，永遠燦爛盛開。❀
+      </p>
+      <span class="invite-ornament-bottom">— ❀ —</span>
+    </div>
+  </div>
+</div>
+
+<!-- SPECIAL THANKS -->
+<div id="credits">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="section-label">❀ Special Thanks</span>
+      <h2 class="section-title">
+        特別感謝
+        <span class="zh">Illustrators</span>
+      </h2>
+      <div class="divider"><div class="divider-dot"></div></div>
+    </div>
+
+    <div class="credits-grid">
+      <div class="credit-wrap reveal reveal-delay-1">
+        <div class="credit-card">
+          <div class="credit-avatar">🎨</div>
+          <span class="credit-role">主視覺插畫</span>
+          <div class="credit-name">迷途</div>
+          <div class="credit-handle">@handle</div>
+        </div>
+        <div class="credit-preview">
+          <img src="assets/saki-main.png" alt="主視覺插畫">
+          <div class="credit-preview-label">主視覺插畫 · 迷途</div>
+        </div>
+      </div>
+      <div class="credit-wrap reveal reveal-delay-2">
+        <div class="credit-card">
+          <div class="credit-avatar">🎟️</div>
+          <span class="credit-role">票券插畫</span>
+          <div class="credit-name">鯉魚旗</div>
+          <div class="credit-handle">@handle</div>
+        </div>
+        <div class="credit-preview">
+          <div class="credit-preview-ph">🎟️</div>
+          <div class="credit-preview-label">票券插畫 · 鯉魚旗</div>
+        </div>
+      </div>
+      <div class="credit-wrap reveal reveal-delay-3">
+        <div class="credit-card">
+          <div class="credit-avatar">🍱</div>
+          <span class="credit-role">飯友插畫</span>
+          <div class="credit-name">鯉魚旗</div>
+          <div class="credit-handle">@handle</div>
+        </div>
+        <div class="credit-preview">
+          <div class="credit-preview-ph">🍱</div>
+          <div class="credit-preview-label">飯友插畫 · 鯉魚旗</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY TEASER -->
+<div id="gallery-teaser">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="section-label">❀ Gallery</span>
+      <h2 class="section-title">
+        活動相冊
+        <span class="zh">Photo Gallery</span>
+      </h2>
+      <div class="divider"><div class="divider-dot"></div></div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-card reveal reveal-delay-1">
+        <div class="gallery-placeholder">❀<span>Photo 01</span></div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-2">
+        <div class="gallery-placeholder">𝄞<span>Photo 02</span></div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-3">
+        <div class="gallery-placeholder">🎀<span>Photo 03</span></div>
+      </div>
+    </div>
+
+    <div class="gallery-cta reveal">
+      <a href="saki-gallery.html" class="btn btn-primary">查看完整相冊 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-wave">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"
+          fill="#1E2875"/>
+  </svg>
+</div>
+<footer>
+  <div class="footer-deco">𝄞 ❀ 𝄞 ❀ 𝄞</div>
+  <p><strong>天馬咲希生日茶會</strong> &nbsp;·&nbsp; 2026.05.09</p>
+  <p style="margin-top:0.4rem; font-size:0.78rem;">With love for the warmest melody in our hearts ❀</p>
+</footer>
+
+<!-- CROSS-NAV POPUP -->
+<div class="cross-nav">
+  <div class="cross-nav-card" id="crossCard">
+    <span class="cross-nav-close" onclick="closeCrossNav()">✕</span>
+    <div class="card-title">另一場茶會</div>
+    <div class="card-name">
+      天馬司生日茶會
+      <em>Tenma Tsukasa Birthday Tea Party</em>
+    </div>
+    <a href="tsukasa.html" class="card-link">前往司的茶會 →</a>
+  </div>
+  <div class="cross-nav-bubble" onclick="toggleCrossNav()">
+    ✦
+    <span class="bubble-hint">司的茶會</span>
+  </div>
+</div>
+
+<script>
+  function toggleCrossNav() {
+    document.getElementById('crossCard').classList.toggle('open');
+  }
+  function closeCrossNav() {
+    document.getElementById('crossCard').classList.remove('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const el = document.querySelector(a.getAttribute('href'));
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天馬咲希生日茶會 · 相冊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Taipei+Sans+TC:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dk-blue:   #1E2875;
+      --dk-blue2:  #2D3A8C;
+      --md-blue:   #3949AB;
+      --yellow:    #FFD600;
+      --yellow-lt: #FFF9C4;
+      --yellow-md: #FFE566;
+      --pink:      #f15f90;
+      --pink-lt:   #FCE4EC;
+      --pink-md:   #f9abca;
+      --bg:        #FFF8FB;
+      --card:      #FFFFFF;
+      --text:      #1A1A3E;
+      --text-lt:   #5C5C8A;
+      --border:    #F9C8DC;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', 'Taipei Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ───────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.8rem 2rem;
+      background: rgba(255,255,255,0.50);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--pink-md);
+      box-shadow: 0 2px 12px rgba(233,30,99,0.08);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--dk-blue); text-decoration: none;
+    }
+    .nav-brand span { color: var(--pink); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; font-weight: 700;
+      font-size: 0.95rem; color: var(--text-lt);
+      padding: 0.3rem 0.8rem; border-radius: 20px; transition: all 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--pink-lt); color: var(--pink);
+    }
+
+    /* ── PAGE HERO ──────────────────────────────────────── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--dk-blue) 0%, var(--dk-blue2) 50%, #4A148C 100%);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '𝄞 ❀ 𝄞 ❀ 𝄞 ❀ 𝄞 ❀ 𝄞 ❀ 𝄞';
+      position: absolute;
+      top: 1rem; left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,214,0,0.22);
+      font-size: 1.2rem; letter-spacing: 0.6rem;
+      white-space: nowrap;
+    }
+    .page-hero-tag {
+      display: inline-block;
+      background: var(--pink); color: #fff;
+      font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.12em; padding: 0.25rem 1rem;
+      border-radius: 20px; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: #fff;
+    }
+    .page-hero h1 .zh {
+      display: block; font-family: 'Taipei Sans TC', serif;
+      font-size: 0.5em; color: var(--yellow);
+      font-weight: 400; margin-top: 0.3rem;
+    }
+
+    /* ── FILTER BAR ─────────────────────────────────────── */
+    .filter-bar {
+      display: flex; gap: 0.7rem;
+      justify-content: center; flex-wrap: wrap;
+      padding: 2rem 2rem 0;
+    }
+    .filter-btn {
+      padding: 0.45rem 1.2rem; border-radius: 20px;
+      border: 2px solid var(--border);
+      background: var(--card); color: var(--text-lt);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 0.85rem;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--pink); border-color: var(--pink); color: #fff;
+    }
+
+    /* ── GALLERY GRID ───────────────────────────────────── */
+    .gallery-section {
+      max-width: 1200px; margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+    }
+    .gallery-masonry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .gallery-item {
+      aspect-ratio: 4/3;
+      border-radius: 16px; overflow: hidden;
+      cursor: pointer; position: relative;
+      background: var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 35px rgba(233,30,99,0.20);
+    }
+    .gallery-item img { display: block; width: 100%; height: auto; }
+    .gallery-placeholder {
+      width: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--pink-lt), var(--yellow-lt));
+      color: var(--text-lt); gap: 0.5rem; padding: 3rem 1rem;
+    }
+    .gallery-placeholder .ph-icon { font-size: 2.5rem; }
+    .gallery-placeholder .ph-label {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--pink-md);
+    }
+    .gallery-placeholder { height: 100%; padding: 1rem; }
+
+    .gallery-item-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,18,60,0.70) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.25s;
+      display: flex; align-items: flex-end; padding: 1rem;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-caption { color: #fff; font-size: 0.82rem; font-weight: 700; }
+
+    /* ── UPLOAD NOTICE ──────────────────────────────────── */
+    .upload-notice {
+      text-align: center; padding: 2rem;
+      background: linear-gradient(135deg, var(--pink-lt), var(--yellow-lt));
+      border-radius: 20px;
+      margin: 0 1.5rem 2rem;
+      border: 2px dashed var(--pink-md);
+      max-width: 1200px; margin-left: auto; margin-right: auto;
+    }
+    .upload-notice p { color: var(--text-lt); font-size: 0.9rem; font-weight: 600; margin-top: 0.5rem; }
+    .upload-notice .notice-icon { font-size: 2rem; }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--dk-blue); color: rgba(255,255,255,0.70);
+      text-align: center; padding: 2rem; font-size: 0.85rem;
+    }
+    footer strong { color: var(--yellow); }
+    .back-btn {
+      display: inline-block; margin-top: 1rem;
+      padding: 0.6rem 1.6rem; background: var(--pink);
+      color: #fff; border-radius: 20px;
+      text-decoration: none; font-weight: 800; font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: #880E4F; }
+
+    /* ── LIGHTBOX ───────────────────────────────────────── */
+    .lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(15,18,60,0.92);
+      z-index: 300; align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw; max-height: 85vh;
+      border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      font-size: 2rem; color: #fff; cursor: pointer;
+      font-weight: 700; line-height: 1;
+    }
+    .lightbox-close:hover { color: var(--yellow); }
+
+    /* ── CROSS-NAV ──────────────────────────────────────── */
+    .cross-nav {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    }
+    .cross-nav-bubble {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, #FF8C42, #2C7BB6);
+      box-shadow: 0 4px 20px rgba(255,140,66,0.40);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; border: 3px solid #fff; font-size: 1.5rem;
+      transition: transform 0.25s; position: relative; z-index: 2;
+    }
+    .cross-nav-bubble:hover { transform: scale(1.1); }
+    .cross-nav-bubble .bubble-hint {
+      position: absolute; right: 66px;
+      background: var(--dk-blue); color: #fff;
+      font-size: 0.75rem; font-weight: 700;
+      white-space: nowrap; padding: 0.35rem 0.8rem;
+      border-radius: 20px; opacity: 0;
+      pointer-events: none; transition: opacity 0.2s;
+    }
+    .cross-nav-bubble:hover .bubble-hint { opacity: 1; }
+    .cross-nav-card {
+      position: absolute; bottom: 68px; right: 0;
+      width: 230px; background: #fff; border-radius: 20px;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 8px 40px rgba(44,123,182,0.20);
+      border: 2px solid #FFD166;
+      opacity: 0; transform: translateY(10px) scale(0.95);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cross-nav-card.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+    .cross-nav-card .card-title {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #FF8C42; margin-bottom: 0.4rem;
+    }
+    .cross-nav-card .card-name {
+      font-family: 'Taipei Sans TC', serif; font-size: 1.05rem; font-weight: 700;
+      color: #1A4F7A; margin-bottom: 1rem; line-height: 1.4;
+    }
+    .cross-nav-card .card-name em {
+      display: block; font-style: normal; font-size: 0.75rem;
+      color: #FF8C42; font-weight: 600; margin-top: 0.1rem;
+    }
+    .cross-nav-card a.card-link {
+      display: block; text-align: center; padding: 0.6rem 1rem;
+      background: linear-gradient(135deg, #FF8C42, #2C7BB6);
+      color: #fff; border-radius: 12px; text-decoration: none;
+      font-weight: 800; font-size: 0.85rem; transition: opacity 0.2s;
+    }
+    .cross-nav-card a.card-link:hover { opacity: 0.85; }
+    .cross-nav-close {
+      position: absolute; top: 0.5rem; right: 0.7rem;
+      cursor: pointer; font-size: 1rem; color: #aaa; line-height: 1; font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 0.7rem 1.2rem; }
+    }
+    @media (max-width: 480px) {
+      .gallery-masonry { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="saki.html" class="nav-brand">𝄞 <span>天馬咲希</span> 生日茶會</a>
+  <ul class="nav-links">
+    <li><a href="saki.html">活動資訊</a></li>
+    <li><a href="saki-gallery.html" class="active">相冊</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="page-hero-tag">𝄞 Photo Gallery</span>
+  <h1>
+    活動相冊
+    <span class="zh">天馬咲希生日茶會 · Gallery</span>
+  </h1>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterGallery('all', this)">全部 All</button>
+  <button class="filter-btn" onclick="filterGallery('venue', this)">場地佈置</button>
+  <button class="filter-btn" onclick="filterGallery('food', this)">茶點甜食</button>
+  <button class="filter-btn" onclick="filterGallery('photo', this)">拍照留念</button>
+  <button class="filter-btn" onclick="filterGallery('moment', this)">活動花絮</button>
+</div>
+
+<!-- UPLOAD NOTICE -->
+<div class="upload-notice" style="margin-top:2rem;">
+  <div class="notice-icon">❀</div>
+  <p>活動相片將於茶會結束後陸續上傳，敬請期待！<br>
+  <span style="color:var(--pink); font-weight:800;">Photos will be uploaded after the event.</span></p>
+</div>
+
+<!-- GALLERY GRID -->
+<div class="gallery-section">
+  <div class="gallery-masonry" id="galleryGrid">
+
+    <div class="gallery-item" data-cat="venue" onclick="openLightbox(this)">
+      <div class="gallery-placeholder"><span class="ph-icon">❀</span><span class="ph-label">場地佈置 01</span></div>
+      <div class="gallery-item-overlay"><span class="gallery-item-caption">場地佈置</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="photo" onclick="openLightbox(this)">
+      <div class="gallery-placeholder"><span class="ph-icon">📷</span><span class="ph-label">拍照留念 01</span></div>
+      <div class="gallery-item-overlay"><span class="gallery-item-caption">拍照留念</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="food" onclick="openLightbox(this)">
+      <div class="gallery-placeholder"><span class="ph-icon">🍰</span><span class="ph-label">茶點甜食 01</span></div>
+      <div class="gallery-item-overlay"><span class="gallery-item-caption">特製甜點</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="moment" onclick="openLightbox(this)">
+      <div class="gallery-placeholder"><span class="ph-icon">𝄞</span><span class="ph-label">活動花絮 01</span></div>
+      <div class="gallery-item-overlay"><span class="gallery-item-caption">活動花絮</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="venue" onclick="openLightbox(this)">
+      <div class="gallery-placeholder"><span class="ph-icon">🎀</span><span class="ph-label">場地佈置 02</span></div>
+      <div class="gallery-item-overlay"><span class="gallery-item-caption">場地佈置</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="photo" onclick="openLightbox(this)">
+      <div class="gallery-placeholder"><span class="ph-icon">🌷</span><span class="ph-label">拍照留念 02</span></div>
+      <div class="gallery-item-overlay"><span class="gallery-item-caption">拍照留念</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="food" onclick="openLightbox(this)">
+      <div class="gallery-placeholder"><span class="ph-icon">🫖</span><span class="ph-label">茶點甜食 02</span></div>
+      <div class="gallery-item-overlay"><span class="gallery-item-caption">下午茶</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="moment" onclick="openLightbox(this)">
+      <div class="gallery-placeholder"><span class="ph-icon">🎂</span><span class="ph-label">活動花絮 02</span></div>
+      <div class="gallery-item-overlay"><span class="gallery-item-caption">慶生時刻</span></div>
+    </div>
+
+    <div class="gallery-item" data-cat="venue" onclick="openLightbox(this)">
+      <div class="gallery-placeholder"><span class="ph-icon">✨</span><span class="ph-label">場地佈置 03</span></div>
+      <div class="gallery-item-overlay"><span class="gallery-item-caption">場地佈置</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>天馬咲希生日茶會</strong> &nbsp;·&nbsp; 2026.05.09 · 相冊</p>
+  <a href="saki.html" class="back-btn">← 返回活動主頁</a>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- CROSS-NAV POPUP -->
+<div class="cross-nav">
+  <div class="cross-nav-card" id="crossCard">
+    <span class="cross-nav-close" onclick="closeCrossNav()">✕</span>
+    <div class="card-title">另一場茶會</div>
+    <div class="card-name">
+      天馬司生日茶會
+      <em>Tenma Tsukasa Birthday Tea Party</em>
+    </div>
+    <a href="tsukasa.html" class="card-link">前往司的茶會 →</a>
+  </div>
+  <div class="cross-nav-bubble" onclick="toggleCrossNav()">
+    ✦
+    <span class="bubble-hint">司的茶會</span>
+  </div>
+</div>
+
+<script>
+  function toggleCrossNav() {
+    document.getElementById('crossCard').classList.toggle('open');
+  }
+  function closeCrossNav() {
+    document.getElementById('crossCard').classList.remove('open');
+  }
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    if (!img) return;
+  }
+  function closeLightbox(e) {
+    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+  }
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

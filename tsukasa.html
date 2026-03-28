@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天馬司生日茶會 ✦</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Taipei+Sans+TC:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:    #2C7BB6;
+      --blue-lt: #7EC8E3;
+      --blue-dk: #1A4F7A;
+      --yellow:  #FFD166;
+      --yellow-lt: #FFF4C2;
+      --orange:  #FF8C42;
+      --orange-lt: #FFDBB5;
+      --bg:      #F4F9FF;
+      --card:    #FFFFFF;
+      --text:    #043989;
+      --text-lt: #4eaaff;
+      --border:  #B8D8F0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', 'Taipei Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ───────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 2rem;
+
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--yellow);
+      box-shadow: 0 2px 12px rgba(44,123,182,0.10);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--blue-dk);
+      letter-spacing: 0.04em;
+    }
+    .nav-brand span { color: var(--orange); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-lt);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      transition: all 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--yellow);
+      color: var(--blue-dk);
+    }
+
+    /* ── HERO ──────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(26,79,122,0.08) 0%,
+        rgba(26,79,122,0.10) 50%,
+        rgba(10,30,60,0.72) 80%,
+        rgba(10,30,60,0.90) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 3rem 3rem 4rem;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: #fff;
+      line-height: 1.2;
+      text-shadow: 0 2px 20px rgba(10,30,60,0.5);
+    }
+    .hero-title .zh {
+      font-family: 'Taipei Sans TC', serif;
+      display: block;
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      color: var(--yellow);
+      font-weight: 400;
+      margin-top: 0.3rem;
+    }
+    .hero-sub {
+      margin-top: 1rem;
+      color: rgba(255,255,255,0.80);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .hero-stars {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .star {
+      position: absolute;
+      color: var(--yellow);
+      animation: twinkle 3s ease-in-out infinite;
+      font-size: 1.2rem;
+    }
+    .star:nth-child(1)  { top: 12%; left: 8%;  animation-delay: 0s;    font-size: 1.6rem; }
+    .star:nth-child(2)  { top: 20%; left: 25%; animation-delay: 0.8s;  font-size: 0.9rem; }
+    .star:nth-child(3)  { top: 8%;  left: 55%; animation-delay: 1.5s;  font-size: 1.3rem; }
+    .star:nth-child(4)  { top: 30%; left: 78%; animation-delay: 0.4s;  font-size: 1.0rem; }
+    .star:nth-child(5)  { top: 15%; left: 90%; animation-delay: 2.0s;  font-size: 1.5rem; }
+    .star:nth-child(6)  { top: 45%; left: 92%; animation-delay: 1.1s;  font-size: 0.8rem; }
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.3; transform: scale(0.7); }
+    }
+
+    /* ── SHOOTING STARS ─────────────────────────────────── */
+    .shooting-stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .s-star {
+      position: absolute;
+      height: 2px;
+      border-radius: 999px;
+      /* bright tip at left (leading) end, tail fades right */
+      background: linear-gradient(to left,
+        transparent 0%,
+        rgba(255, 220, 80, 0.25) 40%,
+        rgba(255, 240, 160, 0.8) 75%,
+        #ffffff 100%
+      );
+      opacity: 0;
+      transform-origin: left center;
+      animation: shootStar linear infinite;
+    }
+    /* glowing head dot at the leading left tip */
+    .s-star::after {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow:
+        0 0 7px 3px rgba(255, 230, 100, 1),
+        0 0 18px 6px rgba(255, 200, 50, 0.6),
+        0 0 35px 10px rgba(255, 165, 0, 0.25);
+    }
+    @keyframes shootStar {
+      /* slow phase — 10% of duration, covers ~8% of distance */
+      0%  {
+        opacity: 0;
+        transform: rotate(-32deg) translateX(0px);
+        animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+      }
+      5%  { opacity: 1; }
+      /* fast phase — 70% of duration, covers ~84% of distance */
+      10% {
+        transform: rotate(-32deg) translateX(-62px);
+        animation-timing-function: linear;
+      }
+      /* slow phase — 20% of duration, covers ~8% of distance */
+      80% {
+        opacity: 0.7;
+        transform: rotate(-32deg) translateX(-718px);
+        animation-timing-function: cubic-bezier(0, 0, 0.6, 1);
+      }
+      92% { opacity: 0; }
+      100% { transform: rotate(-32deg) translateX(-780px); }
+    }
+
+    /* ── SCROLL REVEAL ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── SECTION WRAPPER ────────────────────────────────── */
+    .section { padding: 5.5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.73rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.7rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      color: var(--blue-dk);
+      letter-spacing: -0.01em;
+    }
+    .section-title .zh {
+      display: block;
+      font-family: 'Taipei Sans TC', sans-serif;
+      font-size: 0.52em;
+      color: var(--text-lt);
+      font-weight: 400;
+      margin-top: 0.35rem;
+      letter-spacing: 0.05em;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 1.2rem auto 0;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      width: 40px; height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--yellow));
+      border-radius: 2px;
+    }
+    .divider::after {
+      background: linear-gradient(90deg, var(--yellow), transparent);
+    }
+    .divider-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+    }
+
+    /* ── EVENT INFO ─────────────────────────────────────── */
+    #event {
+      background:
+        radial-gradient(ellipse at 15% 50%, rgba(255,209,102,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 20%, rgba(255,140,66,0.06) 0%, transparent 45%),
+        var(--bg);
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+    .info-card {
+      background: rgba(255,255,255,0.70);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(255,209,102,0.45);
+      border-radius: 24px;
+      padding: 2rem 1.3rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .info-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--yellow), var(--orange), var(--yellow));
+      background-size: 200%;
+      animation: shimmerBar 3s linear infinite;
+    }
+    @keyframes shimmerBar {
+      0%   { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+    .info-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,209,102,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .info-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(255,140,66,0.16);
+      border-color: rgba(255,140,66,0.35);
+    }
+    .info-icon {
+      font-size: 2rem;
+      margin-bottom: 0.9rem;
+      display: block;
+      filter: drop-shadow(0 2px 6px rgba(255,140,66,0.25));
+    }
+    .info-label {
+      font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--blue-lt); margin-bottom: 0.45rem;
+    }
+    .info-value { font-size: 1.1rem; font-weight: 700; color: var(--blue-dk); line-height: 1.4; }
+    .info-note { font-size: 0.80rem; color: var(--text-lt); margin-top: 0.35rem; }
+
+    /* ── INVITATION DESC ────────────────────────────────── */
+    .event-invitation {
+      margin-top: 2.8rem;
+      background: rgba(255,255,255,0.80);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(255,209,102,0.5);
+      border-radius: 28px;
+      padding: 3rem 3.5rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(44,123,182,0.07);
+      overflow: hidden;
+    }
+    .event-invitation::before,
+    .event-invitation::after {
+      content: '✦';
+      position: absolute;
+      font-size: 4rem;
+      color: rgba(255,209,102,0.18);
+      line-height: 1;
+    }
+    .event-invitation::before { top: -0.3rem; left: 1rem; }
+    .event-invitation::after  { bottom: -0.8rem; right: 1rem; transform: rotate(180deg); }
+    .invite-ornament {
+      color: var(--orange);
+      font-size: 0.95rem;
+      letter-spacing: 0.3em;
+      margin-bottom: 1.2rem;
+      display: block;
+      opacity: 0.7;
+    }
+    .invite-body {
+      font-size: 1.02rem;
+      line-height: 2;
+      color: var(--text);
+    }
+    .invite-body strong { color: var(--orange); font-weight: 800; }
+    .invite-ornament-bottom {
+      color: var(--orange);
+      font-size: 0.95rem;
+      letter-spacing: 0.3em;
+      margin-top: 1.2rem;
+      display: block;
+      opacity: 0.7;
+    }
+
+    /* ── SPECIAL THANKS ─────────────────────────────────── */
+    #credits {
+      background:
+        radial-gradient(ellipse at 80% 30%, rgba(255,209,102,0.07) 0%, transparent 50%),
+        var(--bg);
+    }
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+    .credit-card {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(255,209,102,0.40);
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .credit-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--yellow), var(--orange), var(--yellow));
+      background-size: 200%;
+      animation: shimmerBar 3s linear infinite;
+    }
+    .credit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(255,140,66,0.14);
+    }
+    .credit-role {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--orange);
+      background: var(--orange-lt);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .credit-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--yellow-lt), var(--orange-lt));
+      border: 3px solid rgba(255,209,102,0.5);
+      margin: 0 auto 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+    }
+    .credit-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--blue-dk); margin-bottom: 0.3rem;
+    }
+    .credit-handle {
+      font-size: 0.8rem; color: var(--text-lt); font-weight: 600;
+    }
+    .credit-wrap { position: relative; }
+    .credit-wrap:hover { z-index: 20; }
+    .credit-preview {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px) scale(0.94);
+      width: 240px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      border: 2px solid rgba(255,209,102,0.55);
+      box-shadow: 0 16px 48px rgba(44,123,182,0.22);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.34,1.2,0.64,1);
+      z-index: 10;
+    }
+    .credit-preview img {
+      width: 100%; height: 170px;
+      object-fit: cover; display: block;
+    }
+    .credit-preview-ph {
+      width: 100%; height: 170px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, var(--yellow-lt), var(--orange-lt));
+    }
+    .credit-preview-label {
+      padding: 0.55rem 1rem;
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--blue-dk); text-align: center;
+      border-top: 1px solid rgba(255,209,102,0.3);
+    }
+    .credit-wrap:hover .credit-preview {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    /* ── GALLERY TEASER ─────────────────────────────────── */
+    #gallery-teaser {
+      background: linear-gradient(180deg, var(--bg) 0%, rgba(184,216,240,0.4) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #gallery-teaser::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .gallery-card {
+      aspect-ratio: 4/3;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.35s;
+      border: 1.5px solid rgba(255,209,102,0.3);
+    }
+    .gallery-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(44,123,182,0.20);
+    }
+    .gallery-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(255,244,194,0.85), rgba(255,219,181,0.85));
+      color: var(--text-lt);
+      font-size: 2.5rem; gap: 0.5rem;
+      position: relative; overflow: hidden;
+    }
+    .gallery-placeholder::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+      background-size: 200%;
+      animation: placeholderShimmer 2.5s linear infinite;
+    }
+    @keyframes placeholderShimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .gallery-placeholder span {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--blue-lt);
+      position: relative; z-index: 1;
+    }
+    .gallery-placeholder > :first-child { position: relative; z-index: 1; }
+    .gallery-cta { text-align: center; margin-top: 2.5rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 800; font-size: 0.95rem;
+      text-decoration: none; letter-spacing: 0.06em;
+      transition: all 0.3s; cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 50%, var(--blue) 100%);
+      background-size: 200%;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(44,123,182,0.35);
+    }
+    .btn-primary:hover {
+      background-position: right center;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(44,123,182,0.45);
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    .footer-wave { display: block; width: 100%; overflow: hidden; line-height: 0; }
+    .footer-wave svg { display: block; width: 100%; height: 48px; }
+    footer {
+      background: var(--blue-dk);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 2rem 2rem 2.5rem;
+      font-size: 0.85rem;
+      line-height: 1.9;
+    }
+    footer strong { color: var(--yellow); }
+    .footer-stars { font-size: 1.1rem; margin-bottom: 0.6rem; letter-spacing: 0.4em; opacity: 0.8; }
+
+    /* ── CROSS-NAV POPUP ────────────────────────────────── */
+    .cross-nav {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 200;
+    }
+    .cross-nav-bubble {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #E91E63, #283593);
+      box-shadow: 0 4px 20px rgba(233,30,99,0.40);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 3px solid #fff;
+      font-size: 1.5rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      z-index: 2;
+    }
+    .cross-nav-bubble:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 30px rgba(233,30,99,0.50);
+    }
+    .cross-nav-bubble .bubble-hint {
+      position: absolute;
+      right: 66px;
+      background: var(--blue-dk);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+      padding: 0.35rem 0.8rem;
+      border-radius: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .cross-nav-bubble:hover .bubble-hint { opacity: 1; }
+    .cross-nav-card {
+      position: absolute;
+      bottom: 68px;
+      right: 0;
+      width: 230px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 8px 40px rgba(40,53,147,0.20);
+      border: 2px solid #F48FB1;
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cross-nav-card.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+    .cross-nav-card .card-title {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9C27B0;
+      margin-bottom: 0.4rem;
+    }
+    .cross-nav-card .card-name {
+      font-family: 'Taipei Sans TC', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1A237E;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    .cross-nav-card .card-name em {
+      display: block;
+      font-style: normal;
+      font-size: 0.75rem;
+      color: #E91E63;
+      font-weight: 600;
+      margin-top: 0.1rem;
+    }
+    .cross-nav-card a.card-link {
+      display: block;
+      text-align: center;
+      padding: 0.6rem 1rem;
+      background: linear-gradient(135deg, #E91E63, #283593);
+      color: #fff;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.85rem;
+      transition: opacity 0.2s;
+    }
+    .cross-nav-card a.card-link:hover { opacity: 0.85; }
+    .cross-nav-close {
+      position: absolute;
+      top: 0.5rem; right: 0.7rem;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #aaa;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero-content { padding: 2rem 1.5rem 3rem; }
+      .section { padding: 3.5rem 1.2rem; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { padding: 0.7rem 1.2rem; }
+      .nav-brand { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">✦ <span>天馬司</span> 生日茶會</div>
+  <ul class="nav-links">
+    <li><a href="#event" class="active">活動資訊</a></li>
+    <li><a href="tsukasa-gallery.html">相冊</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="assets/tsukasa-main.png" alt="天馬司生日茶會主視覺" class="hero-img">
+  <div class="hero-overlay"></div>
+
+  <!-- CSS-drawn shooting stars -->
+  <div class="shooting-stars" aria-hidden="true">
+    <div class="s-star" style="top:8%;  left:55%; width:170px; animation-duration:8s;  animation-delay:0s;"></div>
+    <div class="s-star" style="top:18%; left:72%; width:120px; animation-duration:10s; animation-delay:13s;"></div>
+    <div class="s-star" style="top:5%;  left:80%; width:210px; animation-duration:9s;  animation-delay:5s;"></div>
+    <div class="s-star" style="top:32%; left:60%; width:145px; animation-duration:11s; animation-delay:21s;"></div>
+    <div class="s-star" style="top:22%; left:90%; width:190px; animation-duration:8.5s; animation-delay:3s;"></div>
+    <div class="s-star" style="top:40%; left:78%; width:130px; animation-duration:7s;  animation-delay:27s;"></div>
+    <div class="s-star" style="top:12%; left:95%; width:100px; animation-duration:12s; animation-delay:17s;"></div>
+  </div>
+
+  <div class="hero-stars" aria-hidden="true">
+    <span class="star">✦</span>
+    <span class="star">★</span>
+    <span class="star">✦</span>
+    <span class="star">☆</span>
+    <span class="star">✦</span>
+    <span class="star">★</span>
+  </div>
+  <div class="hero-content">
+    <span class="hero-tag">✦ Birthday Tea Party ✦</span>
+    <h1 class="hero-title">
+      Tenma Tsukasa
+      <span class="zh">天馬司 生日茶會</span>
+    </h1>
+    <p class="hero-sub">2026.05.17 &nbsp;·&nbsp; 舞台與星光的邂逅</p>
+  </div>
+</section>
+
+<!-- EVENT INFO -->
+<div id="event">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="section-label">✦ Event Details</span>
+      <h2 class="section-title">
+        活動資訊
+        <span class="zh">Event Information</span>
+      </h2>
+      <div class="divider"><div class="divider-dot"></div></div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card reveal reveal-delay-1">
+        <span class="info-icon">📅</span>
+        <div class="info-label">Date</div>
+        <div class="info-value">2026.05.17</div>
+        <div class="info-note">Sunday</div>
+      </div>
+      <div class="info-card reveal reveal-delay-2">
+        <span class="info-icon">🕐</span>
+        <div class="info-label">Time</div>
+        <div class="info-value">14:00 – 17:00</div>
+        <div class="info-note">請提前 10 分鐘入場</div>
+      </div>
+      <div class="info-card reveal reveal-delay-3">
+        <span class="info-icon">📍</span>
+        <div class="info-label">Venue</div>
+        <div class="info-value">華緣藝文空間 B1</div>
+        <div class="info-note">詳細地址請見報名表</div>
+      </div>
+      <div class="info-card reveal reveal-delay-4">
+        <span class="info-icon">🎫</span>
+        <div class="info-label">Admission</div>
+        <div class="info-value">需事先報名</div>
+        <div class="info-note">名額有限，先報先得</div>
+      </div>
+    </div>
+
+    <div class="event-invitation reveal">
+      <span class="invite-ornament">— ✦ —</span>
+      <p class="invite-body">
+        歡迎來到 <strong>天馬司的生日茶會</strong>！<br>
+        在這個充滿星光的下午，我們將以茶會的形式，<br>
+        一起為舞台上最耀眼的巨星慶生。<br><br>
+        現場將設有 <strong>主視覺拍照區</strong>、<strong>留言板</strong>、<strong>特製蛋糕與茶點</strong>，<br>
+        以及滿載祝福的溫暖時光。<br><br>
+        願這份熱情，如同天馬司在舞台上的光芒一樣，永遠閃耀。✦
+      </p>
+      <span class="invite-ornament-bottom">— ✦ —</span>
+    </div>
+  </div>
+</div>
+
+<!-- SPECIAL THANKS -->
+<div id="credits">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="section-label">✦ Special Thanks</span>
+      <h2 class="section-title">
+        特別感謝
+        <span class="zh">Illustrators</span>
+      </h2>
+      <div class="divider"><div class="divider-dot"></div></div>
+    </div>
+
+    <div class="credits-grid">
+      <div class="credit-wrap reveal reveal-delay-1">
+        <div class="credit-card">
+          <div class="credit-avatar">🎨</div>
+          <span class="credit-role">主視覺插畫</span>
+          <div class="credit-name">MoYa</div>
+          <div class="credit-handle">@handle</div>
+        </div>
+        <div class="credit-preview">
+          <img src="assets/tsukasa-main.png" alt="主視覺插畫">
+          <div class="credit-preview-label">主視覺插畫 · MoYa</div>
+        </div>
+      </div>
+      <div class="credit-wrap reveal reveal-delay-2">
+        <div class="credit-card">
+          <div class="credit-avatar">🎟️</div>
+          <span class="credit-role">票券插畫</span>
+          <div class="credit-name">鯉魚旗</div>
+          <div class="credit-handle">@handle</div>
+        </div>
+        <div class="credit-preview">
+          <div class="credit-preview-ph">🎟️</div>
+          <div class="credit-preview-label">票券插畫 · 鯉魚旗</div>
+        </div>
+      </div>
+      <div class="credit-wrap reveal reveal-delay-3">
+        <div class="credit-card">
+          <div class="credit-avatar">🍱</div>
+          <span class="credit-role">飯友插畫</span>
+          <div class="credit-name">鯉魚旗</div>
+          <div class="credit-handle">@handle</div>
+        </div>
+        <div class="credit-preview">
+          <div class="credit-preview-ph">🍱</div>
+          <div class="credit-preview-label">飯友插畫 · 鯉魚旗</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY TEASER -->
+<div id="gallery-teaser">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="section-label">✦ Gallery</span>
+      <h2 class="section-title">
+        活動相冊
+        <span class="zh">Photo Gallery</span>
+      </h2>
+      <div class="divider"><div class="divider-dot"></div></div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-card reveal reveal-delay-1">
+        <div class="gallery-placeholder">🌟<span>Photo 01</span></div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-2">
+        <div class="gallery-placeholder">☆<span>Photo 02</span></div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-3">
+        <div class="gallery-placeholder">✦<span>Photo 03</span></div>
+      </div>
+    </div>
+
+    <div class="gallery-cta reveal">
+      <a href="tsukasa-gallery.html" class="btn btn-primary">查看完整相冊 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-wave">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,24 C240,48 480,0 720,24 C960,48 1200,0 1440,24 L1440,48 L0,48 Z"
+          fill="#1A4F7A"/>
+  </svg>
+</div>
+<footer>
+  <div class="footer-stars">✦ ★ ✦ ★ ✦</div>
+  <p><strong>天馬司生日茶會</strong> &nbsp;·&nbsp; 2026.05.17</p>
+  <p style="margin-top:0.4rem; font-size:0.78rem;">With love for the brightest star on stage ✦</p>
+</footer>
+
+<!-- CROSS-NAV POPUP -->
+<div class="cross-nav">
+  <div class="cross-nav-card" id="crossCard">
+    <span class="cross-nav-close" onclick="closeCrossNav()">✕</span>
+    <div class="card-title">另一場茶會</div>
+    <div class="card-name">
+      天馬咲希生日茶會
+      <em>Tenma Saki Birthday Tea Party</em>
+    </div>
+    <a href="saki.html" class="card-link">前往咲希的茶會 →</a>
+  </div>
+  <div class="cross-nav-bubble" onclick="toggleCrossNav()">
+    🌸
+    <span class="bubble-hint">咲希的茶會</span>
+  </div>
+</div>
+
+<script>
+  function toggleCrossNav() {
+    document.getElementById('crossCard').classList.toggle('open');
+  }
+  function closeCrossNav() {
+    document.getElementById('crossCard').classList.remove('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const el = document.querySelector(a.getAttribute('href'));
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

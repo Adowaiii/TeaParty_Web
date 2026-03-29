@@ -81,6 +81,7 @@
     .hero {
       position: relative;
       height: 100vh;
+      height: 100dvh;
       min-height: 600px;
       display: flex;
       align-items: flex-end;
@@ -951,7 +952,6 @@
     /* ── LETTER / ENVELOPE ────────────────────────── */
     #letter-section {
       padding: 5rem 2rem 4.5rem;
-      background: linear-gradient(180deg, var(--bg) 0%, rgba(184,216,240,0.5) 100%);
     }
     .letter-outer {
       max-width: 900px;
@@ -961,12 +961,12 @@
     }
     .letter-scene {
       position: relative;
-      height: 500px;
+      padding-bottom: 140px;
     }
     /* Layer 1 — envelope back */
     .env-back {
       position: absolute;
-      bottom: -60px; left: 0; right: 0;
+      bottom: 60px; left: 0; right: 0;
       height: 260px;
       background: #dbeeff;
       border: 1.5px solid var(--border);
@@ -989,10 +989,8 @@
     }
     /* Layer 2 — letter card */
     .letter-card {
-      position: absolute;
-      left: 6%; right: 6%;
-      bottom: 0;
-      transform: translateY(20px);
+      position: relative;
+      margin: 0 6%;
       background: rgba(255,255,255,0.97);
       border: 1.5px solid var(--border);
       border-radius: 20px;
@@ -1014,12 +1012,13 @@
     /* Layer 3 — envelope front: full rectangle, V-notch cut from top */
     .env-front {
       position: absolute;
-      bottom: -120px; left: 0; right: 0;
+      bottom: 0; left: 0; right: 0;
       height: 260px;
       background: linear-gradient(165deg, #f4f9ff 0%, #dbeeff 100%);
       border: 1.5px solid var(--border);
       border-radius: 0 0 12px 12px;
       clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
+      box-shadow: 0 4px 24px rgba(44,123,182,0.09);
       z-index: 3;
     }
     .env-front::before {
@@ -1034,12 +1033,12 @@
     }
     @media (max-width: 640px) {
       #letter-section { padding: 4rem 1.2rem 3.5rem; }
-      .letter-scene { height: 440px; }
+      .letter-scene { padding-bottom: 110px; }
       .env-back, .env-front { height: 230px; }
       .letter-card { padding: 2rem 1.4rem; border-radius: 18px; }
     }
     @media (max-width: 420px) {
-      .letter-scene { height: 410px; }
+      .letter-scene { padding-bottom: 90px; }
       .env-back, .env-front { height: 210px; }
     }
   </style>
@@ -1066,7 +1065,7 @@
   <div class="nav-brand">✦ <span>天馬司</span> 生日茶會</div>
   <ul class="nav-links">
     <li><a href="#event" class="active">活動資訊</a></li>
-    <li><a href="celebration.html">賀圖・賀文</a></li>
+    <li><a href="tsukasa-celebration.html">賀圖・賀文</a></li>
     <li><a href="tsukasa-gallery.html">相冊</a></li>
   </ul>
 </nav>
@@ -1117,11 +1116,11 @@
         <span class="invite-ornament">— ✦ —</span>
         <p class="invite-body">
           歡迎來到 <strong>天馬司的生日茶會</strong>！<br>
-          在這個充滿星光的下午，我們將以茶會的形式，<br>
+          在群星閃耀的午後，<br>我們將以茶會的形式，<br>
           一起為舞台上最耀眼的巨星慶生。<br><br>
-          現場將設有 <strong>主視覺拍照區</strong>、<strong>留言板</strong>、<strong>特製蛋糕與茶點</strong>，<br>
+          現場將設有<br><strong>主視覺拍照區</strong> | <strong>留言板</strong> | <strong>特製蛋糕與茶點</strong>，<br>
           以及滿載祝福的溫暖時光。<br><br>
-          願這份熱情，如同天馬司在舞台上的光芒一樣，永遠閃耀。✦
+          願這份熱情，<br>如同天馬司在舞台上的光芒一樣，<br>永遠閃耀。✦
         </p>
         <span class="invite-ornament-bottom">— ✦ —</span>
       </div>

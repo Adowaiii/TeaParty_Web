@@ -85,6 +85,7 @@
     .hero {
       position: relative;
       height: 100vh;
+      height: 100dvh;
       min-height: 600px;
       display: flex;
       align-items: flex-end;
@@ -970,9 +971,10 @@
 
     /* ── LETTER / ENVELOPE ────────────────────────── */
     #letter-section {
+      background: var(--bg);
       padding: 5rem 2rem 4.5rem;
-      background: linear-gradient(180deg, var(--bg) 0%, rgba(252,228,236,0.5) 100%);
-    }
+      }
+
     .letter-outer { 
       max-width: 900px; 
       margin: 0 auto;
@@ -981,13 +983,13 @@
 
     .letter-scene {
       position: relative;
-      height: 500px;
+      padding-bottom: 140px;
     }
 
     /* Layer 1 — envelope back */
     .env-back {
       position: absolute;
-      bottom: -60px; left: 0; right: 0;
+      bottom: 60px; left: 0; right: 0;
       height: 260px;
       background: #fce4ec;
       border: 1.5px solid var(--border);
@@ -1011,10 +1013,8 @@
 
     /* Layer 2 — letter card */
     .letter-card {
-      position: absolute;
-      left: 6%; right: 6%;
-      bottom: 0;
-      transform: translateY(20px);
+      position: relative;
+      margin: 0 6%;
       background: rgba(255,255,255,0.97);
       border: 1.5px solid var(--border);
       border-radius: 20px;
@@ -1037,7 +1037,7 @@
     /* Layer 3 — envelope front: full rectangle, V-notch cut from top */
     .env-front {
       position: absolute;
-      bottom: -120px; left: 0; right: 0;
+      bottom: 0; left: 0; right: 0;
       height: 260px;
       background: linear-gradient(165deg, #fff8fb 0%, #fce4ec 100%);
       border: 1.5px solid var(--border);
@@ -1061,12 +1061,12 @@
     }
     @media (max-width: 640px) {
       #letter-section { padding: 4rem 1.2rem 3.5rem; }
-      .letter-scene { height: 440px; }
+      .letter-scene { padding-bottom: 110px; }
       .env-back, .env-front { height: 230px; }
       .letter-card { padding: 2rem 1.4rem; border-radius: 18px; }
     }
     @media (max-width: 420px) {
-      .letter-scene { height: 410px; }
+      .letter-scene { padding-bottom: 90px; }
       .env-back, .env-front { height: 210px; }
     }
   </style>
@@ -1095,7 +1095,7 @@
   <div class="nav-brand">𝄞 <span>天馬咲希</span> 生日茶會</div>
   <ul class="nav-links">
     <li><a href="#event" class="active">活動資訊</a></li>
-    <li><a href="celebration.html">賀圖・賀文</a></li>
+    <li><a href="saki-celebration.html">賀圖・賀文</a></li>
     <li><a href="saki-gallery.html">相冊</a></li>
   </ul>
 </nav>
@@ -1157,11 +1157,12 @@
         <span class="invite-ornament">— ❀ —</span>
         <p class="invite-body">
           歡迎來到 <strong>天馬咲希的生日茶會</strong>！<br>
-          伴隨著鋼琴的悠揚旋律與茶香，在這個充滿溫柔光芒的午後，<br>
+          伴隨著鋼琴的悠揚旋律與茶香，<br>
+          在這個充滿溫柔光芒的午後，<br>
           我們一起為最可愛的咲希送上滿滿的祝福。<br><br>
-          現場將設有 <strong>主視覺拍照區</strong>、<strong>音樂角落</strong>、<strong>特製蛋糕與茶點</strong>，<br>
+          現場將設有<br> <strong>主視覺拍照區</strong> | <strong>音樂角落</strong> | <strong>特製蛋糕與茶點</strong><br>
           以及數不完的幸福時光。<br><br>
-          願咲希的笑容，如同春日的花朵，永遠燦爛盛開。❀
+          願咲希的笑容，<br>如同春日的花朵，<br>永遠燦爛盛開。
         </p>
         <span class="invite-ornament-bottom">— ❀ —</span>
       </div>

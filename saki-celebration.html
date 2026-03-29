@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>天馬咲希生日茶會 · 相冊</title>
+  <title>天馬咲希生日茶會 · 賀圖賀文</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Taipei+Sans+TC:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -70,7 +70,7 @@
       overflow: hidden;
     }
     .page-hero::before {
-      content: '𝄞 ❀ 𝄞 ❀ 𝄞 ❀ 𝄞 ❀ 𝄞 ❀ 𝄞';
+      content: '❀ 𝄞 ❀ 𝄞 ❀ 𝄞 ❀ 𝄞 ❀ 𝄞 ❀';
       position: absolute;
       top: 1rem; left: 50%;
       transform: translateX(-50%);
@@ -115,59 +115,99 @@
       background: var(--pink); border-color: var(--pink); color: #fff;
     }
 
-    /* ── GALLERY GRID ───────────────────────────────────── */
+    /* ── MASONRY GRID ───────────────────────────────────── */
     .gallery-section {
-      max-width: 1200px; margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
       padding: 2rem 1.5rem 5rem;
     }
-    .gallery-masonry {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
+    .masonry {
+      columns: 3; column-gap: 1.4rem;
     }
-    .gallery-item {
-      aspect-ratio: 4/3;
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.4rem;
       border-radius: 16px; overflow: hidden;
-      cursor: pointer; position: relative;
-      background: var(--border);
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 14px rgba(233,30,99,0.06);
       transition: transform 0.25s, box-shadow 0.25s;
     }
-    .gallery-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 12px 35px rgba(233,30,99,0.20);
+    .masonry-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(233,30,99,0.14);
     }
-    .gallery-item img { display: block; width: 100%; height: auto; }
-    .gallery-placeholder {
-      width: 100%;
+    .masonry-item.hidden { display: none; }
+
+    /* ── ART CARD ───────────────────────────────────────── */
+    .art-placeholder {
+      width: 100%; aspect-ratio: 1 / 1;
       display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      align-items: center; justify-content: center; gap: 0.6rem;
       background: linear-gradient(135deg, var(--pink-lt), var(--yellow-lt));
-      color: var(--text-lt); gap: 0.5rem; padding: 3rem 1rem;
+      color: var(--text-lt);
     }
-    .gallery-placeholder .ph-icon { font-size: 2.5rem; }
-    .gallery-placeholder .ph-label {
+    .art-placeholder.ph-tall  { aspect-ratio: 3 / 4; }
+    .art-placeholder.ph-wide  { aspect-ratio: 4 / 3; }
+    .art-placeholder .ph-icon  { font-size: 2.4rem; opacity: 0.5; }
+    .art-placeholder .ph-label {
       font-size: 0.75rem; font-weight: 700;
       letter-spacing: 0.08em; color: var(--pink-md);
     }
-    .gallery-placeholder { height: 100%; padding: 1rem; }
+    .art-img { width: 100%; display: block; object-fit: cover; }
 
-    .gallery-item-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(15,18,60,0.70) 0%, transparent 60%);
-      opacity: 0; transition: opacity 0.25s;
-      display: flex; align-items: flex-end; padding: 1rem;
+    .card-meta {
+      padding: 0.85rem 1rem 0.95rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
     }
-    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
-    .gallery-item-caption { color: #fff; font-size: 0.82rem; font-weight: 700; }
+    .card-artist {
+      font-size: 0.82rem; font-weight: 700; color: var(--text);
+    }
+    .card-artist span {
+      display: block; font-size: 0.72rem; font-weight: 400;
+      color: var(--text-lt); margin-top: 0.1rem;
+    }
+    .card-tag {
+      flex-shrink: 0;
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em;
+      padding: 0.2rem 0.65rem; border-radius: 12px; text-transform: uppercase;
+      background: var(--pink-lt); color: var(--pink);
+    }
 
-    /* ── UPLOAD NOTICE ──────────────────────────────────── */
+    /* ── WRITING CARD ───────────────────────────────────── */
+    .writing-card { padding: 1.5rem 1.3rem 1.3rem; }
+    .writing-card .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem; line-height: 0.6;
+      color: var(--border); margin-bottom: 0.6rem;
+      display: block; user-select: none;
+    }
+    .writing-text {
+      font-size: 0.9rem; line-height: 1.85;
+      color: var(--text); white-space: pre-wrap;
+    }
+    .writing-footer {
+      margin-top: 1rem; padding-top: 0.8rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .writing-author { font-size: 0.78rem; font-weight: 700; color: var(--text-lt); }
+
+    /* ── EMPTY STATE ────────────────────────────────────── */
+    .empty-state {
+      display: none; text-align: center;
+      padding: 4rem 2rem; color: var(--text-lt);
+    }
+    .empty-state.visible { display: block; }
+    .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.4; }
+
+    /* ── SUBMIT NOTICE ──────────────────────────────────── */
     .upload-notice {
       text-align: center; padding: 2rem;
       background: linear-gradient(135deg, var(--pink-lt), var(--yellow-lt));
       border-radius: 20px;
-      margin: 0 1.5rem 2rem;
+      margin: 2rem auto 0;
       border: 2px dashed var(--pink-md);
-      max-width: 1200px; margin-left: auto; margin-right: auto;
+      max-width: 1100px;
     }
     .upload-notice p { color: var(--text-lt); font-size: 0.9rem; font-weight: 600; margin-top: 0.5rem; }
     .upload-notice .notice-icon { font-size: 2rem; }
@@ -187,32 +227,13 @@
     }
     .back-btn:hover { background: #880E4F; }
 
-    /* ── LIGHTBOX ───────────────────────────────────────── */
-    .lightbox {
-      display: none; position: fixed; inset: 0;
-      background: rgba(15,18,60,0.92);
-      z-index: 300; align-items: center; justify-content: center;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 90vw; max-height: 85vh;
-      border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    }
-    .lightbox-close {
-      position: absolute; top: 1.5rem; right: 2rem;
-      font-size: 2rem; color: #fff; cursor: pointer;
-      font-weight: 700; line-height: 1;
-    }
-    .lightbox-close:hover { color: var(--yellow); }
-
-    /* ── CROSS-NAV ──────────────────────────────────────── */
+    /* ── CROSS-NAV POPUP ────────────────────────────────── */
     .cross-nav {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
     }
     .cross-nav-bubble {
-      width: 56px; height: 56px;
-      border-radius: 50%;
-      color:#fff;
+      width: 56px; height: 56px; border-radius: 50%;
+      color: #fff;
       background: linear-gradient(135deg, #ffbb00, #ff9900);
       box-shadow: 0 4px 20px rgba(255,140,66,0.40);
       display: flex; align-items: center; justify-content: center;
@@ -270,13 +291,11 @@
       cursor: pointer; font-size: 1rem; color: #bbb; line-height: 1; font-weight: 700;
     }
 
-    /* ── TABLET (≤ 900px) ──────────────────────────────── */
+    /* ── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 900px) {
       .gallery-section { padding: 1.5rem 1.2rem 4rem; }
-      .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
+      .masonry { columns: 2; }
     }
-
-    /* ── MOBILE (≤ 640px) ──────────────────────────────── */
     @media (max-width: 640px) {
       nav { padding: 0.65rem 1.1rem; }
       .nav-brand { font-size: 0.88rem; }
@@ -285,21 +304,18 @@
       .page-hero { padding: 3rem 1.2rem 2rem; }
       .filter-bar { padding: 1.2rem 1rem 0; gap: 0.5rem; }
       .filter-btn { padding: 0.35rem 0.8rem; font-size: 0.78rem; }
-      .upload-notice { margin: 1.2rem 1rem; padding: 1.4rem 1rem; }
+      .upload-notice { margin: 1.2rem 1rem 0; padding: 1.4rem 1rem; }
       .gallery-section { padding: 1.2rem 1rem 3.5rem; }
-      .gallery-masonry { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .masonry { columns: 1; }
       .cross-nav { bottom: 1.1rem; right: 1.1rem; }
       .cross-nav-bubble { width: 48px; height: 48px; font-size: 1.2rem; }
       .cross-nav-card { width: 200px; }
     }
-
-    /* ── SMALL MOBILE (≤ 420px) ────────────────────────── */
     @media (max-width: 420px) {
-      .gallery-masonry { grid-template-columns: 1fr; }
       .nav-brand { font-size: 0.78rem; }
     }
 
-    /* ── PRELOADER ──────────────────────────────────── */
+    /* ── PRELOADER ──────────────────────────────────────── */
     body.loading { overflow: hidden; }
     #preloader {
       position: fixed; inset: 0; z-index: 9999;
@@ -384,7 +400,7 @@
     <div class="pl-ring"></div>
     <span class="pl-icon">❀</span>
   </div>
-  <div class="pl-title">天馬咲希<em>相冊</em></div>
+  <div class="pl-title">天馬咲希<em>賀圖・賀文</em></div>
   <div class="pl-dots"><span></span><span></span><span></span></div>
 </div>
 
@@ -393,99 +409,121 @@
   <a href="saki.html" class="nav-brand">𝄞 <span>天馬咲希</span> 生日茶會</a>
   <ul class="nav-links">
     <li><a href="saki.html">活動資訊</a></li>
-    <li><a href="saki-celebration.html">賀圖・賀文</a></li>
-    <li><a href="saki-gallery.html" class="active">相冊</a></li>
+    <li><a href="saki-celebration.html" class="active">賀圖・賀文</a></li>
+    <li><a href="saki-gallery.html">相冊</a></li>
   </ul>
 </nav>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
-  <span class="page-hero-tag">𝄞 Photo Gallery</span>
+  <span class="page-hero-tag">❀ Fan Celebration</span>
   <h1>
-    活動相冊
-    <span class="zh">天馬咲希生日茶會 · Gallery</span>
+    賀圖・賀文
+    <span class="zh">Fan Art &amp; Writings</span>
   </h1>
 </div>
 
 <!-- FILTER BAR -->
 <div class="filter-bar">
-  <button class="filter-btn active" onclick="filterGallery('all', this)">全部 All</button>
-  <button class="filter-btn" onclick="filterGallery('venue', this)">場地佈置</button>
-  <button class="filter-btn" onclick="filterGallery('food', this)">茶點甜食</button>
-  <button class="filter-btn" onclick="filterGallery('photo', this)">拍照留念</button>
-  <button class="filter-btn" onclick="filterGallery('moment', this)">活動花絮</button>
+  <button class="filter-btn active" onclick="filterItems('all', this)">全部 All</button>
+  <button class="filter-btn" onclick="filterItems('art', this)">賀圖</button>
+  <button class="filter-btn" onclick="filterItems('writing', this)">賀文</button>
 </div>
 
-<!-- UPLOAD NOTICE -->
-<div class="upload-notice" style="margin-top:2rem;">
+<!-- SUBMIT NOTICE -->
+<div class="upload-notice" style="margin-top:2rem; margin-left:auto; margin-right:auto; max-width:1100px; margin-bottom:0;">
   <div class="notice-icon">❀</div>
-  <p>活動相片將於茶會結束後陸續上傳，敬請期待！<br>
-  <span style="color:var(--pink); font-weight:800;">Photos will be uploaded after the event.</span></p>
+  <p>歡迎所有粉絲投稿慶生賀圖或賀文，一起為咲希送上祝福！<br>
+  <span style="color:var(--pink); font-weight:800;">Submissions open — fan art &amp; writings welcome!</span></p>
 </div>
 
-<!-- GALLERY GRID -->
+<!-- MASONRY -->
 <div class="gallery-section">
-  <div class="gallery-masonry" id="galleryGrid">
+  <div class="masonry" id="masonry">
 
-    <div class="gallery-item" data-cat="venue" onclick="openLightbox(this)">
-      <div class="gallery-placeholder"><span class="ph-icon">❀</span><span class="ph-label">場地佈置 01</span></div>
-      <div class="gallery-item-overlay"><span class="gallery-item-caption">場地佈置</span></div>
+    <div class="masonry-item" data-type="art">
+      <div class="art-placeholder ph-tall">
+        <span class="ph-icon">🖼</span>
+        <span class="ph-label">賀圖投稿中</span>
+      </div>
+      <div class="card-meta">
+        <div class="card-artist">
+          Artist Name
+          <span>@handle</span>
+        </div>
+        <span class="card-tag">咲希</span>
+      </div>
     </div>
 
-    <div class="gallery-item" data-cat="photo" onclick="openLightbox(this)">
-      <div class="gallery-placeholder"><span class="ph-icon">📷</span><span class="ph-label">拍照留念 01</span></div>
-      <div class="gallery-item-overlay"><span class="gallery-item-caption">拍照留念</span></div>
+    <div class="masonry-item" data-type="writing">
+      <div class="writing-card">
+        <span class="quote-mark">"</span>
+        <p class="writing-text">咲希，生日快樂！
+感謝你每次都用那麼溫柔的笑容，
+讓每一個普通的日子都變得閃閃發光。
+願你永遠被音樂與愛包圍。❀</p>
+        <div class="writing-footer">
+          <span class="writing-author">— 投稿者</span>
+          <span class="card-tag">咲希</span>
+        </div>
+      </div>
     </div>
 
-    <div class="gallery-item" data-cat="food" onclick="openLightbox(this)">
-      <div class="gallery-placeholder"><span class="ph-icon">🍰</span><span class="ph-label">茶點甜食 01</span></div>
-      <div class="gallery-item-overlay"><span class="gallery-item-caption">特製甜點</span></div>
+    <div class="masonry-item" data-type="art">
+      <div class="art-placeholder ph-tall">
+        <span class="ph-icon">🖼</span>
+        <span class="ph-label">賀圖投稿中</span>
+      </div>
+      <div class="card-meta">
+        <div class="card-artist">
+          Artist Name
+          <span>@handle</span>
+        </div>
+        <span class="card-tag">咲希</span>
+      </div>
     </div>
 
-    <div class="gallery-item" data-cat="moment" onclick="openLightbox(this)">
-      <div class="gallery-placeholder"><span class="ph-icon">𝄞</span><span class="ph-label">活動花絮 01</span></div>
-      <div class="gallery-item-overlay"><span class="gallery-item-caption">活動花絮</span></div>
+    <div class="masonry-item" data-type="writing">
+      <div class="writing-card">
+        <span class="quote-mark">"</span>
+        <p class="writing-text">每次聽到你唱歌，
+都覺得世界溫柔了一點。
+今天是你的生日，希望所有的溫柔
+都能回到你身邊。生日快樂，咲希！❀</p>
+        <div class="writing-footer">
+          <span class="writing-author">— 投稿者</span>
+          <span class="card-tag">咲希</span>
+        </div>
+      </div>
     </div>
 
-    <div class="gallery-item" data-cat="venue" onclick="openLightbox(this)">
-      <div class="gallery-placeholder"><span class="ph-icon">🎀</span><span class="ph-label">場地佈置 02</span></div>
-      <div class="gallery-item-overlay"><span class="gallery-item-caption">場地佈置</span></div>
+    <div class="masonry-item" data-type="art">
+      <div class="art-placeholder">
+        <span class="ph-icon">🖼</span>
+        <span class="ph-label">賀圖投稿中</span>
+      </div>
+      <div class="card-meta">
+        <div class="card-artist">
+          Artist Name
+          <span>@handle</span>
+        </div>
+        <span class="card-tag">咲希</span>
+      </div>
     </div>
 
-    <div class="gallery-item" data-cat="photo" onclick="openLightbox(this)">
-      <div class="gallery-placeholder"><span class="ph-icon">🌷</span><span class="ph-label">拍照留念 02</span></div>
-      <div class="gallery-item-overlay"><span class="gallery-item-caption">拍照留念</span></div>
-    </div>
+  </div>
 
-    <div class="gallery-item" data-cat="food" onclick="openLightbox(this)">
-      <div class="gallery-placeholder"><span class="ph-icon">🫖</span><span class="ph-label">茶點甜食 02</span></div>
-      <div class="gallery-item-overlay"><span class="gallery-item-caption">下午茶</span></div>
-    </div>
-
-    <div class="gallery-item" data-cat="moment" onclick="openLightbox(this)">
-      <div class="gallery-placeholder"><span class="ph-icon">🎂</span><span class="ph-label">活動花絮 02</span></div>
-      <div class="gallery-item-overlay"><span class="gallery-item-caption">慶生時刻</span></div>
-    </div>
-
-    <div class="gallery-item" data-cat="venue" onclick="openLightbox(this)">
-      <div class="gallery-placeholder"><span class="ph-icon">✨</span><span class="ph-label">場地佈置 03</span></div>
-      <div class="gallery-item-overlay"><span class="gallery-item-caption">場地佈置</span></div>
-    </div>
-
+  <div class="empty-state" id="emptyState">
+    <div class="empty-icon">🎨</div>
+    <p>此分類暫無內容</p>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <p><strong>天馬咲希生日茶會</strong> &nbsp;·&nbsp; 2026.05.09 · 相冊</p>
+  <p><strong>天馬咲希生日茶會</strong> &nbsp;·&nbsp; 2026.05.09 · 賀圖賀文</p>
   <a href="saki.html" class="back-btn">← 返回活動主頁</a>
 </footer>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
-  <img id="lightboxImg" src="" alt="">
-</div>
 
 <!-- CROSS-NAV POPUP -->
 <div class="cross-nav">
@@ -511,21 +549,17 @@
   function closeCrossNav() {
     document.getElementById('crossCard').classList.remove('open');
   }
-  function openLightbox(el) {
-    const img = el.querySelector('img');
-    if (!img) return;
-  }
-  function closeLightbox(e) {
-    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
-      document.getElementById('lightbox').classList.remove('open');
-    }
-  }
-  function filterGallery(cat, btn) {
+
+  function filterItems(type, btn) {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
+    let visible = 0;
+    document.querySelectorAll('.masonry-item').forEach(item => {
+      const show = type === 'all' || item.dataset.type === type;
+      item.classList.toggle('hidden', !show);
+      if (show) visible++;
     });
+    document.getElementById('emptyState').classList.toggle('visible', visible === 0);
   }
 
   // Preloader

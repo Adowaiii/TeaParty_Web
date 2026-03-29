@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天馬司生日茶會 · 賀圖賀文</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Taipei+Sans+TC:wght@400;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:      #2C7BB6;
+      --blue-lt:   #7EC8E3;
+      --blue-dk:   #1A4F7A;
+      --yellow:    #FFD166;
+      --yellow-lt: #FFF4C2;
+      --orange:    #FF8C42;
+      --orange-lt: #FFDBB5;
+      --bg:        #F4F9FF;
+      --card:      #FFFFFF;
+      --text:      #1E3352;
+      --text-lt:   #4A6FA5;
+      --border:    #B8D8F0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', 'Taipei Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ───────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.8rem 2rem;
+      background: rgba(255,255,255,0.50);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--yellow);
+      box-shadow: 0 2px 12px rgba(44,123,182,0.10);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--blue-dk); text-decoration: none;
+    }
+    .nav-brand span { color: var(--orange); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+    .nav-links a {
+      text-decoration: none; font-weight: 700;
+      font-size: 0.95rem; color: var(--text-lt);
+      padding: 0.3rem 0.8rem; border-radius: 20px; transition: all 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: var(--yellow); color: var(--blue-dk);
+    }
+
+    /* ── PAGE HERO ──────────────────────────────────────── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 50%, #1A6088 100%);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦ ★ ✦';
+      position: absolute;
+      top: 1rem; left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,209,102,0.25);
+      font-size: 1.2rem; letter-spacing: 0.5rem;
+      white-space: nowrap;
+    }
+    .page-hero-tag {
+      display: inline-block;
+      background: var(--orange); color: #fff;
+      font-size: 0.75rem; font-weight: 800;
+      letter-spacing: 0.12em; padding: 0.25rem 1rem;
+      border-radius: 20px; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: #fff;
+    }
+    .page-hero h1 .zh {
+      display: block; font-family: 'Taipei Sans TC', serif;
+      font-size: 0.5em; color: var(--yellow);
+      font-weight: 400; margin-top: 0.3rem;
+    }
+
+    /* ── FILTER BAR ─────────────────────────────────────── */
+    .filter-bar {
+      display: flex; gap: 0.7rem;
+      justify-content: center; flex-wrap: wrap;
+      padding: 2rem 2rem 0;
+    }
+    .filter-btn {
+      padding: 0.45rem 1.2rem; border-radius: 20px;
+      border: 2px solid var(--border);
+      background: var(--card); color: var(--text-lt);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 0.85rem;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--blue); border-color: var(--blue); color: #fff;
+    }
+
+    /* ── MASONRY GRID ───────────────────────────────────── */
+    .gallery-section {
+      max-width: 1100px; margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+    }
+    .masonry {
+      columns: 3; column-gap: 1.4rem;
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.4rem;
+      border-radius: 16px; overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 14px rgba(44,123,182,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .masonry-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(44,123,182,0.16);
+    }
+    .masonry-item.hidden { display: none; }
+
+    /* ── ART CARD ───────────────────────────────────────── */
+    .art-placeholder {
+      width: 100%; aspect-ratio: 1 / 1;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.6rem;
+      background: linear-gradient(135deg, var(--yellow-lt), var(--orange-lt));
+      color: var(--text-lt);
+    }
+    .art-placeholder.ph-tall  { aspect-ratio: 3 / 4; }
+    .art-placeholder.ph-wide  { aspect-ratio: 4 / 3; }
+    .art-placeholder .ph-icon  { font-size: 2.4rem; opacity: 0.5; }
+    .art-placeholder .ph-label {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--blue-lt);
+    }
+    .art-img { width: 100%; display: block; object-fit: cover; }
+
+    .card-meta {
+      padding: 0.85rem 1rem 0.95rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+    }
+    .card-artist {
+      font-size: 0.82rem; font-weight: 700; color: var(--text);
+    }
+    .card-artist span {
+      display: block; font-size: 0.72rem; font-weight: 400;
+      color: var(--text-lt); margin-top: 0.1rem;
+    }
+    .card-tag {
+      flex-shrink: 0;
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em;
+      padding: 0.2rem 0.65rem; border-radius: 12px; text-transform: uppercase;
+      background: #DBEEFF; color: var(--blue);
+    }
+
+    /* ── WRITING CARD ───────────────────────────────────── */
+    .writing-card { padding: 1.5rem 1.3rem 1.3rem; }
+    .writing-card .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem; line-height: 0.6;
+      color: var(--border); margin-bottom: 0.6rem;
+      display: block; user-select: none;
+    }
+    .writing-text {
+      font-size: 0.9rem; line-height: 1.85;
+      color: var(--text); white-space: pre-wrap;
+    }
+    .writing-footer {
+      margin-top: 1rem; padding-top: 0.8rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .writing-author { font-size: 0.78rem; font-weight: 700; color: var(--text-lt); }
+
+    /* ── EMPTY STATE ────────────────────────────────────── */
+    .empty-state {
+      display: none; text-align: center;
+      padding: 4rem 2rem; color: var(--text-lt);
+    }
+    .empty-state.visible { display: block; }
+    .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.4; }
+
+    /* ── SUBMIT NOTICE ──────────────────────────────────── */
+    .upload-notice {
+      text-align: center; padding: 2rem;
+      background: linear-gradient(135deg, var(--yellow-lt), #E8F4FF);
+      border-radius: 20px;
+      margin: 2rem auto 0;
+      border: 2px dashed var(--yellow);
+      max-width: 1100px;
+    }
+    .upload-notice p { color: var(--text-lt); font-size: 0.9rem; font-weight: 600; margin-top: 0.5rem; }
+    .upload-notice .notice-icon { font-size: 2rem; }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--blue-dk); color: rgba(255,255,255,0.7);
+      text-align: center; padding: 2rem; font-size: 0.85rem;
+    }
+    footer strong { color: var(--yellow); }
+    .back-btn {
+      display: inline-block; margin-top: 1rem;
+      padding: 0.6rem 1.6rem; background: var(--yellow);
+      color: var(--blue-dk); border-radius: 20px;
+      text-decoration: none; font-weight: 800; font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: var(--orange); color: #fff; }
+
+    /* ── CROSS-NAV POPUP ────────────────────────────────── */
+    .cross-nav {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    }
+    .cross-nav-bubble {
+      width: 56px; height: 56px; border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(135deg, #ffdd44, #4455dd);
+      box-shadow: 0 4px 20px rgba(233,30,99,0.40);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; border: 3px solid #fff;
+      font-size: 1.5rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative; z-index: 2;
+    }
+    .cross-nav-bubble:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 30px rgba(67,30,233,0.5);
+    }
+    .cross-nav-bubble .bubble-hint {
+      position: absolute; right: 66px;
+      background: var(--blue-dk); color: #fff;
+      font-size: 0.75rem; font-weight: 700;
+      white-space: nowrap; padding: 0.35rem 0.8rem;
+      border-radius: 20px; opacity: 0;
+      pointer-events: none; transition: opacity 0.2s;
+    }
+    .cross-nav-bubble:hover .bubble-hint { opacity: 1; }
+    .cross-nav-card {
+      position: absolute; bottom: 68px; right: 0;
+      width: 270px; background: #ffffff;
+      border-radius: 20px; padding: 1.2rem 1.5rem;
+      box-shadow: 0 8px 40px rgba(40,53,147,0.20);
+      border: 2px solid #F48FB1;
+      opacity: 0; transform: translateY(10px) scale(0.95);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cross-nav-card.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+    .cross-nav-card .card-title {
+      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #000; margin-bottom: 0.4rem;
+    }
+    .cross-nav-card .card-name {
+      font-family: 'Taipei Sans TC', sans-serif; font-size: 1.05rem; font-weight: 700;
+      color: #4455dd; margin-bottom: 1rem; line-height: 1.4;
+    }
+    .cross-nav-card .card-name em {
+      display: block; font-style: normal; font-size: 0.75rem;
+      color: #ffdd44; font-weight: 600; margin-top: 0.1rem;
+    }
+    .cross-nav-card a.card-link {
+      display: block; text-align: center; padding: 0.6rem 1rem;
+      background: linear-gradient(135deg, #ffdd44, #4455dd);
+      color: #fff; border-radius: 12px; text-decoration: none;
+      font-weight: 800; font-size: 0.85rem; transition: opacity 0.2s;
+    }
+    .cross-nav-card a.card-link:hover { opacity: 0.85; }
+    .cross-nav-close {
+      position: absolute; top: 0.5rem; right: 0.7rem;
+      cursor: pointer; font-size: 1rem; color: #aaa; line-height: 1; font-weight: 700;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .gallery-section { padding: 1.5rem 1.2rem 4rem; }
+      .masonry { columns: 2; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0.65rem 1.1rem; }
+      .nav-brand { font-size: 0.88rem; }
+      .nav-links { gap: 0.4rem; }
+      .nav-links a { padding: 0.25rem 0.55rem; font-size: 0.82rem; }
+      .page-hero { padding: 3rem 1.2rem 2rem; }
+      .filter-bar { padding: 1.2rem 1rem 0; gap: 0.5rem; }
+      .filter-btn { padding: 0.35rem 0.8rem; font-size: 0.78rem; }
+      .upload-notice { margin: 1.2rem 1rem 0; padding: 1.4rem 1rem; }
+      .gallery-section { padding: 1.2rem 1rem 3.5rem; }
+      .masonry { columns: 1; }
+      .cross-nav { bottom: 1.1rem; right: 1.1rem; }
+      .cross-nav-bubble { width: 48px; height: 48px; font-size: 1.2rem; }
+      .cross-nav-card { width: 200px; }
+    }
+    @media (max-width: 420px) {
+      .nav-brand { font-size: 0.78rem; }
+    }
+
+    /* ── PRELOADER ──────────────────────────────────────── */
+    body.loading { overflow: hidden; }
+    #preloader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: linear-gradient(160deg, #061828 0%, #0d2d4a 60%, #1A4F7A 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1.6rem;
+      transition: opacity 0.7s ease;
+    }
+    #preloader.fade-out { opacity: 0; pointer-events: none; }
+    .pl-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .pl-s {
+      position: absolute; height: 2px;
+      background: linear-gradient(to left, transparent, #FFD166 60%, #fff);
+      border-radius: 2px; opacity: 0;
+      animation: pl-shoot ease-in-out infinite;
+    }
+    .pl-s::before {
+      content: ''; position: absolute; left: -4px; top: 50%;
+      transform: translateY(-50%); width: 6px; height: 6px;
+      border-radius: 50%; background: #fff;
+      box-shadow: 0 0 8px 3px #FFD166;
+    }
+    .pl-s:nth-child(1) { width: 130px; top: 18%; left: 85%; animation-duration: 3.8s; animation-delay: 0.3s; }
+    .pl-s:nth-child(2) { width: 100px; top: 50%; left: 75%; animation-duration: 4.5s; animation-delay: 1.6s; }
+    .pl-s:nth-child(3) { width: 160px; top: 72%; left: 92%; animation-duration: 3.2s; animation-delay: 2.5s; }
+    @keyframes pl-shoot {
+      0%   { opacity: 0; transform: translateX(0); }
+      8%   { opacity: 1; }
+      75%  { opacity: 0.8; }
+      100% { opacity: 0; transform: translateX(-500px); }
+    }
+    .pl-emblem {
+      width: 96px; height: 96px; position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pl-ring {
+      position: absolute; inset: 0;
+      border: 3px solid rgba(255,209,102,0.18);
+      border-top-color: #FFD166;
+      border-right-color: rgba(255,209,102,0.5);
+      border-radius: 50%;
+      animation: pl-spin 1.5s linear infinite;
+    }
+    .pl-icon {
+      color: #FFD166; font-size: 2.2rem; line-height: 1;
+      animation: pl-pulse 2s ease-in-out infinite;
+      text-shadow: 0 0 16px rgba(255,209,102,0.9);
+    }
+    @keyframes pl-spin  { to { transform: rotate(360deg); } }
+    @keyframes pl-pulse { 0%,100% { opacity: 0.65; transform: scale(0.88); } 50% { opacity: 1; transform: scale(1.12); } }
+    .pl-title {
+      color: #fff; font-family: 'Playfair Display', serif;
+      font-size: 1.65rem; text-align: center; letter-spacing: 0.08em;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.5);
+    }
+    .pl-title em {
+      color: #FFD166; font-style: normal; font-size: 0.9rem;
+      display: block; letter-spacing: 0.28em; margin-top: 0.4rem;
+      font-family: 'Taipei Sans TC', sans-serif; font-weight: 400;
+    }
+    .pl-dots { display: flex; gap: 0.55rem; }
+    .pl-dots span {
+      width: 7px; height: 7px; border-radius: 50%;
+      animation: pl-bounce 1.2s ease-in-out infinite;
+    }
+    .pl-dots span:nth-child(1) { background: #FFD166; }
+    .pl-dots span:nth-child(2) { background: #FF8C42; animation-delay: 0.2s; }
+    .pl-dots span:nth-child(3) { background: #FFD166; animation-delay: 0.4s; }
+    @keyframes pl-bounce {
+      0%,100% { transform: translateY(0); opacity: 0.3; }
+      50%      { transform: translateY(-10px); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pl-bg">
+    <span class="pl-s"></span>
+    <span class="pl-s"></span>
+    <span class="pl-s"></span>
+  </div>
+  <div class="pl-emblem">
+    <div class="pl-ring"></div>
+    <span class="pl-icon">✦</span>
+  </div>
+  <div class="pl-title">天馬司<em>賀圖・賀文</em></div>
+  <div class="pl-dots"><span></span><span></span><span></span></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="tsukasa.html" class="nav-brand">✦ <span>天馬司</span> 生日茶會</a>
+  <ul class="nav-links">
+    <li><a href="tsukasa.html">活動資訊</a></li>
+    <li><a href="tsukasa-celebration.html" class="active">賀圖・賀文</a></li>
+    <li><a href="tsukasa-gallery.html">相冊</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="page-hero-tag">✦ Fan Celebration</span>
+  <h1>
+    賀圖・賀文
+    <span class="zh"> Fan Art &amp; Writings</span>
+  </h1>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterItems('all', this)">全部 All</button>
+  <button class="filter-btn" onclick="filterItems('art', this)">賀圖</button>
+  <button class="filter-btn" onclick="filterItems('writing', this)">賀文</button>
+</div>
+
+<!-- SUBMIT NOTICE -->
+<div class="upload-notice" style="margin-top:2rem; margin-left:auto; margin-right:auto; max-width:1100px; margin-bottom:0;">
+  <div class="notice-icon">✦</div>
+  <p>歡迎所有粉絲投稿慶生賀圖或賀文，一起為司送上祝福！<br>
+  <span style="color:var(--orange); font-weight:800;">Submissions open — fan art &amp; writings welcome!</span></p>
+</div>
+
+<!-- MASONRY -->
+<div class="gallery-section">
+  <div class="masonry" id="masonry">
+
+    <div class="masonry-item" data-type="art">
+      <div class="art-placeholder">
+        <span class="ph-icon">🖼</span>
+        <span class="ph-label">賀圖投稿中</span>
+      </div>
+      <div class="card-meta">
+        <div class="card-artist">
+          Artist Name
+          <span>@handle</span>
+        </div>
+        <span class="card-tag">司</span>
+      </div>
+    </div>
+
+    <div class="masonry-item" data-type="writing">
+      <div class="writing-card">
+        <span class="quote-mark">"</span>
+        <p class="writing-text">天馬司，生日快樂！
+舞台上那耀眼的光芒，
+是你對夢想從未妥協的證明。
+願你的每一步都走得無比燦爛。✦</p>
+        <div class="writing-footer">
+          <span class="writing-author">— 投稿者</span>
+          <span class="card-tag">司</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="masonry-item" data-type="art">
+      <div class="art-placeholder ph-wide">
+        <span class="ph-icon">🖼</span>
+        <span class="ph-label">賀圖投稿中</span>
+      </div>
+      <div class="card-meta">
+        <div class="card-artist">
+          Artist Name
+          <span>@handle</span>
+        </div>
+        <span class="card-tag">司</span>
+      </div>
+    </div>
+
+    <div class="masonry-item" data-type="art">
+      <div class="art-placeholder ph-tall">
+        <span class="ph-icon">🖼</span>
+        <span class="ph-label">賀圖投稿中</span>
+      </div>
+      <div class="card-meta">
+        <div class="card-artist">
+          Artist Name
+          <span>@handle</span>
+        </div>
+        <span class="card-tag">司</span>
+      </div>
+    </div>
+
+    <div class="masonry-item" data-type="writing">
+      <div class="writing-card">
+        <span class="quote-mark">"</span>
+        <p class="writing-text">看著你站在舞台上發光，
+讓每個人都忘不了那道光。
+生日快樂，司。
+願你的舞台永無落幕。✦</p>
+        <div class="writing-footer">
+          <span class="writing-author">— 投稿者</span>
+          <span class="card-tag">司</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="empty-state" id="emptyState">
+    <div class="empty-icon">🎨</div>
+    <p>此分類暫無內容</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>天馬司生日茶會</strong> &nbsp;·&nbsp; 2026.05.17 · 賀圖賀文</p>
+  <a href="tsukasa.html" class="back-btn">← 返回活動主頁</a>
+</footer>
+
+<!-- CROSS-NAV POPUP -->
+<div class="cross-nav">
+  <div class="cross-nav-card" id="crossCard">
+    <span class="cross-nav-close" onclick="closeCrossNav()">✕</span>
+    <div class="card-title">另一場茶會</div>
+    <div class="card-name">
+      天馬咲希生日茶會
+      <em>Tenma Saki Birthday Tea Party</em>
+    </div>
+    <a href="saki.html" class="card-link">前往咲希的茶會 →</a>
+  </div>
+  <div class="cross-nav-bubble" onclick="toggleCrossNav()">
+    🌸
+    <span class="bubble-hint">咲希的茶會</span>
+  </div>
+</div>
+
+<script>
+  function toggleCrossNav() {
+    document.getElementById('crossCard').classList.toggle('open');
+  }
+  function closeCrossNav() {
+    document.getElementById('crossCard').classList.remove('open');
+  }
+
+  function filterItems(type, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    let visible = 0;
+    document.querySelectorAll('.masonry-item').forEach(item => {
+      const show = type === 'all' || item.dataset.type === type;
+      item.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    document.getElementById('emptyState').classList.toggle('visible', visible === 0);
+  }
+
+  // Preloader
+  (function() {
+    document.body.classList.add('loading');
+    function hidePreloader() {
+      var pl = document.getElementById('preloader');
+      if (!pl) return;
+      pl.classList.add('fade-out');
+      document.body.classList.remove('loading');
+      setTimeout(function() { pl.remove(); }, 700);
+    }
+    if (document.readyState === 'complete') {
+      setTimeout(hidePreloader, 300);
+    } else {
+      window.addEventListener('load', hidePreloader);
+    }
+  })();
+</script>
+</body>
+</html>
